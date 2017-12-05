@@ -12,5 +12,21 @@
       "../common/mixins",
       "./mixins"
     ]
+  },
+  "site": {
+    "dataSource": "db",
+    "public": false
+  },
+  "lang": {
+    "dataSource": "db",
+    "public": false
+  },
+  "langAltName": {
+    "dataSource": "db",
+    "public": false
+  },
+  "score": {
+    "dataSource": "db",
+    "public": false
   }
 }
