@@ -13,8 +13,20 @@
         "include": false
     },
     {
+        "name": "ActionScript",
+        "include": true
+    },
+    {
+        "name": "Ada",
+        "include": true
+    },
+    {
         "name": "Adobe Font Metrics",
         "include": false
+    },
+    {
+        "name": "Agda",
+        "include": true
     },
     {
         "name": "AGS Script",
@@ -60,12 +72,20 @@
         "include": false
     },
     {
+        "name": "APL",
+        "include": true
+    },
+    {
         "name": "Apollo Guidance Computer",
         "include": false
     },
     {
         "name": "AppleScript",
         "include": false
+    },
+    {
+        "name": "Arc",
+        "include": true
     },
     {
         "name": "Arduino",
@@ -88,6 +108,14 @@
         "include": false
     },
     {
+        "name": "Assembly",
+        "include": true
+    },
+    {
+        "name": "ATS",
+        "include": true
+    },
+    {
         "name": "Augeas",
         "include": false
     },
@@ -98,6 +126,14 @@
     {
         "name": "AutoIt",
         "include": false
+    },
+    {
+        "name": "Awk",
+        "include": true
+    },
+    {
+        "name": "Ballerina",
+        "include": true
     },
     {
         "name": "Batchfile",
@@ -132,6 +168,10 @@
         "include": false
     },
     {
+        "name": "Boo",
+        "include": true
+    },
+    {
         "name": "Brainfuck",
         "include": false
     },
@@ -142,6 +182,18 @@
     {
         "name": "Bro",
         "include": false
+    },
+    {
+        "name": "C",
+        "include": true
+    },
+    {
+        "name": "C#",
+        "include": true
+    },
+    {
+        "name": "C++",
+        "include": true
     },
     {
         "name": "C-ObjDump",
@@ -160,6 +212,18 @@
         "include": false
     },
     {
+        "name": "Ceylon",
+        "include": true
+    },
+    {
+        "name": "Chapel",
+        "include": true
+    },
+    {
+        "name": "Charity",
+        "include": true
+    },
+    {
         "name": "ChucK",
         "include": false
     },
@@ -172,12 +236,20 @@
         "include": false
     },
     {
+        "name": "Clean",
+        "include": true
+    },
+    {
         "name": "Click",
         "include": false
     },
     {
         "name": "CLIPS",
         "include": false
+    },
+    {
+        "name": "Clojure",
+        "include": true
     },
     {
         "name": "Closure Templates",
@@ -188,6 +260,18 @@
         "include": false
     },
     {
+        "name": "COBOL",
+        "include": true
+    },
+    {
+        "name": "CoffeeScript",
+        "include": true
+    },
+    {
+        "name": "ColdFusion",
+        "include": true
+    },
+    {
         "name": "ColdFusion CFC",
         "include": false
     },
@@ -196,9 +280,21 @@
         "include": false
     },
     {
+        "name": "Common Lisp",
+        "include": true
+    },
+    {
+        "name": "Component Pascal",
+        "include": true
+    },
+    {
         "name": "Cool",
         "include": false,
         "url": "https://en.wikipedia.org/wiki/Cool_(programming_language)"
+    },
+    {
+        "name": "Coq",
+        "include": true
     },
     {
         "name": "Cpp-ObjDump",
@@ -207,6 +303,10 @@
     {
         "name": "Creole",
         "include": false
+    },
+    {
+        "name": "Crystal",
+        "include": true
     },
     {
         "name": "CSON",
@@ -250,12 +350,20 @@
         "include": false
     },
     {
+        "name": "D",
+        "include": true
+    },
+    {
         "name": "D-ObjDump",
         "include": false
     },
     {
         "name": "Darcs Patch",
         "include": false
+    },
+    {
+        "name": "Dart",
+        "include": true
     },
     {
         "name": "DataWeave",
@@ -294,6 +402,14 @@
         "include": false
     },
     {
+        "name": "Dylan",
+        "include": true
+    },
+    {
+        "name": "E",
+        "include": true
+    },
+    {
         "name": "Eagle",
         "include": false
     },
@@ -304,6 +420,10 @@
     {
         "name": "EBNF",
         "include": false
+    },
+    {
+        "name": "eC",
+        "include": true
     },
     {
         "name": "Ecere Projects",
@@ -324,12 +444,52 @@
         "include": false
     },
     {
+        "name": "Eiffel",
+        "include": true
+    },
+    {
         "name": "EJS",
         "include": false
     },
     {
+        "name": "Elixir",
+        "include": true
+    },
+    {
+        "name": "Elm",
+        "include": true
+    },
+    {
         "name": "Emacs Lisp",
         "include": false
+    },
+    {
+        "name": "EmberScript",
+        "include": true
+    },
+    {
+        "name": "EQ",
+        "include": true
+    },
+    {
+        "name": "Erlang",
+        "include": true
+    },
+    {
+        "name": "F#",
+        "include": true
+    },
+    {
+        "name": "Factor",
+        "include": true
+    },
+    {
+        "name": "Fancy",
+        "include": true
+    },
+    {
+        "name": "Fantom",
+        "include": true
     },
     {
         "name": "Filebench WML",
@@ -355,8 +515,20 @@
         "url": "https://github.com/github/linguist/tree/master/samples/Formatted"
     },
     {
+        "name": "Forth",
+        "include": true
+    },
+    {
+        "name": "Fortran",
+        "include": true
+    },
+    {
         "name": "FreeMarker",
         "include": false
+    },
+    {
+        "name": "Frege",
+        "include": true
     },
     {
         "name": "G-code",
@@ -389,6 +561,10 @@
         "name": "GDScript",
         "include": false,
         "url": "https://en.wikipedia.org/wiki/Godot_(game_engine)"
+    },
+    {
+        "name": "Genie",
+        "include": true
     },
     {
         "name": "Genshi",
@@ -437,6 +613,22 @@
         "include": false
     },
     {
+        "name": "Go",
+        "include": true
+    },
+    {
+        "name": "Golo",
+        "include": true
+    },
+    {
+        "name": "Gosu",
+        "include": true
+    },
+    {
+        "name": "Grace",
+        "include": true
+    },
+    {
         "name": "Gradle",
         "include": false
     },
@@ -457,8 +649,16 @@
         "include": false
     },
     {
+        "name": "Groovy",
+        "include": true
+    },
+    {
         "name": "Groovy Server Pages",
         "include": false
+    },
+    {
+        "name": "Hack",
+        "include": true
     },
     {
         "name": "Haml",
@@ -467,6 +667,18 @@
     {
         "name": "Handlebars",
         "include": false
+    },
+    {
+        "name": "Harbour",
+        "include": true
+    },
+    {
+        "name": "Haskell",
+        "include": true
+    },
+    {
+        "name": "Haxe",
+        "include": true
     },
     {
         "name": "HCL",
@@ -508,9 +720,21 @@
         "url": "httpspec??"
     },
     {
+        "name": "Hy",
+        "include": true
+    },
+    {
         "name": "HyPhy",
         "include": false,
         "url": "https://en.wikipedia.org/wiki/HYPHY_(software)"
+    },
+    {
+        "name": "IDL",
+        "include": true
+    },
+    {
+        "name": "Idris",
+        "include": true
     },
     {
         "name": "IGOR Pro",
@@ -529,6 +753,14 @@
         "include": false
     },
     {
+        "name": "Io",
+        "include": true
+    },
+    {
+        "name": "Ioke",
+        "include": true
+    },
+    {
         "name": "IRC log",
         "include": false
     },
@@ -544,13 +776,25 @@
         "url": "https://isabelle.in.tum.de/doc/system.pdf"
     },
     {
+        "name": "J",
+        "include": true
+    },
+    {
         "name": "Jasmin",
         "include": false,
         "url": "https://en.wikipedia.org/wiki/Jasmin_(software)"
     },
     {
+        "name": "Java",
+        "include": true
+    },
+    {
         "name": "Java Server Pages",
         "include": false
+    },
+    {
+        "name": "JavaScript",
+        "include": true
     },
     {
         "name": "JFlex",
@@ -563,6 +807,10 @@
     {
         "name": "Jison Lex",
         "include": false
+    },
+    {
+        "name": "Jolie",
+        "include": true
     },
     {
         "name": "JSON",
@@ -583,6 +831,10 @@
     {
         "name": "JSX",
         "include": false
+    },
+    {
+        "name": "Julia",
+        "include": true
     },
     {
         "name": "Jupyter Notebook",
@@ -606,6 +858,10 @@
         "url": "https://codekitapp.com/help/kit/"
     },
     {
+        "name": "Kotlin",
+        "include": true
+    },
+    {
         "name": "KRL",
         "include": false,
         "url": "https://en.wikipedia.org/wiki/KUKA_Robot_Language"
@@ -613,6 +869,10 @@
     {
         "name": "LabVIEW",
         "include": false
+    },
+    {
+        "name": "Lasso",
+        "include": true
     },
     {
         "name": "Latte",
@@ -633,8 +893,16 @@
         "include": false
     },
     {
+        "name": "LFE",
+        "include": true
+    },
+    {
         "name": "LilyPond",
         "include": false
+    },
+    {
+        "name": "Limbo",
+        "include": true
     },
     {
         "name": "Linker Script",
@@ -662,6 +930,10 @@
         "include": false
     },
     {
+        "name": "LiveScript",
+        "include": true
+    },
+    {
         "name": "LLVM",
         "include": false
     },
@@ -669,6 +941,10 @@
         "name": "Logos",
         "include": false,
         "url": "http://iphonedevwiki.net/index.php/Logos"
+    },
+    {
+        "name": "Logtalk",
+        "include": true
     },
     {
         "name": "LOLCODE",
@@ -688,6 +964,14 @@
         "url": "https://en.wikipedia.org/wiki/Linden_Scripting_Language"
     },
     {
+        "name": "Lua",
+        "include": true
+    },
+    {
+        "name": "M",
+        "include": true
+    },
+    {
         "name": "M4",
         "include": false
     },
@@ -696,13 +980,13 @@
         "include": false
     },
     {
+        "name": "Makefile",
+        "include": false
+    },
+    {
         "name": "Mako",
         "include": false,
         "url": "http://www.makotemplates.org/"
-    },
-    {
-        "name": "Makefile",
-        "include": false
     },
     {
         "name": "Markdown",
@@ -717,6 +1001,10 @@
         "name": "Mask",
         "include": false,
         "url": "https://github.com/atmajs/MaskJS"
+    },
+    {
+        "name": "Mathematica",
+        "include": true
     },
     {
         "name": "Matlab",
@@ -742,6 +1030,10 @@
         "include": false
     },
     {
+        "name": "Mercury",
+        "include": true
+    },
+    {
         "name": "Meson",
         "include": false,
         "url": "http://mesonbuild.com"
@@ -753,7 +1045,19 @@
         "url": "https://developer.apple.com/metal/"
     },
     {
+        "name": "MiniD",
+        "include": true
+    },
+    {
+        "name": "Mirah",
+        "include": true
+    },
+    {
         "name": "Modelica"
+    },
+    {
+        "name": "Modula-2",
+        "include": true
     },
     {
         "name": "Module Management System"
@@ -765,6 +1069,10 @@
         "name": "Moocode",
         "include": false,
         "url": "https://en.wikipedia.org/wiki/MOO"
+    },
+    {
+        "name": "MoonScript",
+        "include": true
     },
     {
         "name": "MQL4",
@@ -804,6 +1112,10 @@
         "url": "https://nearley.js.org/"
     },
     {
+        "name": "Nemerle",
+        "include": true
+    },
+    {
         "name": "nesC",
         "include": false
     },
@@ -820,13 +1132,25 @@
         "include": false
     },
     {
+        "name": "NewLisp",
+        "include": true
+    },
+    {
         "name": "Nginx",
         "include": false
+    },
+    {
+        "name": "Nim",
+        "include": true
     },
     {
         "name": "Ninja",
         "include": false,
         "url": "https://ninja-build.org/"
+    },
+    {
+        "name": "Nit",
+        "include": true
     },
     {
         "name": "Nix",
@@ -856,14 +1180,38 @@
         "include": false
     },
     {
+        "name": "Objective-C",
+        "include": true
+    },
+    {
+        "name": "Objective-C++",
+        "include": true
+    },
+    {
         "name": "Objective-J",
         "description": "Pretty much exclusive to Cappucino",
         "include": false,
         "url": "http://www.cappuccino-project.org/learn/objective-j.html"
     },
     {
+        "name": "OCaml",
+        "include": true
+    },
+    {
         "name": "Omgrofl",
         "include": false
+    },
+    {
+        "name": "ooc",
+        "include": true
+    },
+    {
+        "name": "Opa",
+        "include": true
+    },
+    {
+        "name": "Opal",
+        "include": true
     },
     {
         "name": "OpenCL",
@@ -895,6 +1243,14 @@
         "include": false
     },
     {
+        "name": "Oxygene",
+        "include": true
+    },
+    {
+        "name": "Oz",
+        "include": true
+    },
+    {
         "name": "P4",
         "include": false
     },
@@ -920,6 +1276,10 @@
         "include": false
     },
     {
+        "name": "Pascal",
+        "include": true
+    },
+    {
         "name": "PAWN",
         "include": false,
         "url": "https://www.compuphase.com/pawn/"
@@ -928,8 +1288,16 @@
         "name": "Pep8"
     },
     {
+        "name": "Perl",
+        "include": true
+    },
+    {
         "name": "Perl 6",
         "include": false
+    },
+    {
+        "name": "PHP",
+        "include": true
     },
     {
         "name": "Pic",
@@ -940,9 +1308,17 @@
         "name": "Pickle"
     },
     {
+        "name": "PicoLisp",
+        "include": true
+    },
+    {
         "name": "PigLatin",
         "include": false,
         "url": "https://en.wikipedia.org/wiki/Pig_(programming_tool)"
+    },
+    {
+        "name": "Pike",
+        "include": true
     },
     {
         "name": "PLpgSQL",
@@ -956,6 +1332,14 @@
         "name": "Pod",
         "include": false,
         "url": "https://en.wikipedia.org/wiki/Plain_Old_Documentation"
+    },
+    {
+        "name": "PogoScript",
+        "include": true
+    },
+    {
+        "name": "Pony",
+        "include": true
     },
     {
         "name": "PostScript",
@@ -972,8 +1356,16 @@
         "url": "https://en.wikipedia.org/wiki/PowerBuilder"
     },
     {
+        "name": "PowerShell",
+        "include": true
+    },
+    {
         "name": "Processing",
         "include": false
+    },
+    {
+        "name": "Prolog",
+        "include": true
     },
     {
         "name": "Propeller Spin",
@@ -1003,6 +1395,18 @@
         "url": "https://en.wikipedia.org/wiki/Pure_Data"
     },
     {
+        "name": "PureBasic",
+        "include": true
+    },
+    {
+        "name": "PureScript",
+        "include": true
+    },
+    {
+        "name": "Python",
+        "include": true
+    },
+    {
         "name": "Python console",
         "include": false
     },
@@ -1017,6 +1421,14 @@
     {
         "name": "QML",
         "include": false
+    },
+    {
+        "name": "R",
+        "include": true
+    },
+    {
+        "name": "Racket",
+        "include": true
     },
     {
         "name": "Ragel",
@@ -1044,6 +1456,18 @@
         "url": "https://en.wikipedia.org/wiki/Xojo"
     },
     {
+        "name": "Reason",
+        "include": true
+    },
+    {
+        "name": "Rebol",
+        "include": true
+    },
+    {
+        "name": "Red",
+        "include": true
+    },
+    {
         "name": "Redcode",
         "include": false,
         "url": "https://esolangs.org/wiki/Redcode"
@@ -1065,8 +1489,16 @@
         "include": false
     },
     {
+        "name": "REXX",
+        "include": true
+    },
+    {
         "name": "RHTML",
         "include": false
+    },
+    {
+        "name": "Ring",
+        "include": true
     },
     {
         "name": "RMarkdown",
@@ -1081,17 +1513,33 @@
         "include": false
     },
     {
+        "name": "Rouge",
+        "include": true
+    },
+    {
         "name": "RPM Spec",
         "include": false
+    },
+    {
+        "name": "Ruby",
+        "include": true
     },
     {
         "name": "RUNOFF",
         "include": false
     },
     {
+        "name": "Rust",
+        "include": true
+    },
+    {
         "name": "Sage",
         "include": false,
         "url": "https://en.wikipedia.org/wiki/SageMath"
+    },
+    {
+        "name": "SaltStack",
+        "include": true
     },
     {
         "name": "SAS",
@@ -1102,7 +1550,15 @@
         "include": false
     },
     {
+        "name": "Scala",
+        "include": true
+    },
+    {
         "name": "Scaml"
+    },
+    {
+        "name": "Scheme",
+        "include": true
     },
     {
         "name": "Scilab",
@@ -1113,11 +1569,27 @@
         "include": false
     },
     {
+        "name": "Self",
+        "include": true
+    },
+    {
         "name": "ShaderLab"
+    },
+    {
+        "name": "Shell",
+        "include": true
     },
     {
         "name": "ShellSession",
         "include": false
+    },
+    {
+        "name": "Shen",
+        "include": true
+    },
+    {
+        "name": "Slash",
+        "include": true
     },
     {
         "name": "Slim",
@@ -1127,6 +1599,10 @@
     },
     {
         "name": "Smali"
+    },
+    {
+        "name": "Smalltalk",
+        "include": true
     },
     {
         "name": "Smarty",
@@ -1169,6 +1645,10 @@
         "include": false
     },
     {
+        "name": "Squirrel",
+        "include": true
+    },
+    {
         "name": "SRecode Template",
         "include": false,
         "url": "http://cedet.sourceforge.net/srecode.shtml"
@@ -1177,6 +1657,10 @@
         "name": "Stan",
         "include": false,
         "url": "https://en.wikipedia.org/wiki/Stan_(software)"
+    },
+    {
+        "name": "Standard ML",
+        "include": true
     },
     {
         "name": "Stata",
@@ -1211,12 +1695,28 @@
         "include": false
     },
     {
+        "name": "Swift",
+        "include": true
+    },
+    {
         "name": "SystemVerilog",
         "include": false
     },
     {
+        "name": "Tcl",
+        "include": true
+    },
+    {
         "name": "Tcsh",
         "include": false
+    },
+    {
+        "name": "Tea",
+        "include": true
+    },
+    {
+        "name": "Terra",
+        "include": true
     },
     {
         "name": "TeX",
@@ -1251,6 +1751,10 @@
         "url": "https://en.wikipedia.org/wiki/TOML"
     },
     {
+        "name": "Turing",
+        "include": true
+    },
+    {
         "name": "Turtle",
         "include": false,
         "url": "https://en.wikipedia.org/wiki/Turtle_(syntax)"
@@ -1270,6 +1774,10 @@
         "name": "Type Language",
         "include": false,
         "url": "https://core.telegram.org/mtproto/TL"
+    },
+    {
+        "name": "TypeScript",
+        "include": true
     },
     {
         "name": "Unified Parallel C",
@@ -1293,6 +1801,14 @@
         "include": false
     },
     {
+        "name": "UrWeb",
+        "include": true
+    },
+    {
+        "name": "Vala",
+        "include": true
+    },
+    {
         "name": "VCL",
         "description": "Varnish Configuration Language",
         "include": false,
@@ -1311,8 +1827,12 @@
         "include": false
     },
     {
-        "name": "VimL",
-        "include": false
+        "name": "Visual Basic",
+        "include": true
+    },
+    {
+        "name": "Volt",
+        "include": true
     },
     {
         "name": "Vue",
@@ -1351,8 +1871,16 @@
         "url": "https://en.wikipedia.org/wiki/Web_IDL"
     },
     {
+        "name": "wisp",
+        "include": true
+    },
+    {
         "name": "World of Warcraft Addon Data",
         "include": false
+    },
+    {
+        "name": "X10",
+        "include": true
     },
     {
         "name": "xBase",
@@ -1407,6 +1935,10 @@
     {
         "name": "XSLT",
         "include": false
+    },
+    {
+        "name": "Xtend",
+        "include": true
     },
     {
         "name": "Yacc",
