@@ -7,7 +7,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "node .",
+    "start": "babel-node . --presets node8",
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
@@ -21,6 +21,8 @@
     "loopback": "^3.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-node8": "^1.2.0",
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",
     "nsp": "^2.1.0"
