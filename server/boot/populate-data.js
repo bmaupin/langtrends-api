@@ -1,5 +1,8 @@
 'use strict';
 
+import Github from '../../src/site/Github';
+import languages from '../../src/lang/languages.json';
+
 module.exports = function(app, cb) {
   /*
    * The `app` object provides access to a variety of LoopBack resources such as
@@ -10,8 +13,9 @@ module.exports = function(app, cb) {
    */
 
   populateSite(app);
-
-  process.nextTick(cb); // Remove if you pass `cb` to an async function yourself
+  populateLang(app).then(() => {
+    process.nextTick(cb);
+  });
 };
 
 function populateSite(app) {
@@ -29,4 +33,24 @@ function populateSite(app) {
       ]);
     }
   });
+}
+
+async function populateLang(app) {
+  let langsFromGithub = await Github.getLangNames();
+
+  // TODO: handle languages that aren't in languages.json
+  for (let i = 0, len = langsFromGithub.length; i < len; i++) {
+    for (let j = 0, len = languages.length; j < len; j++) {
+      if (langsFromGithub[i] === languages[j].name) {
+        if (languages[j].include === true) {
+          // TODO: add code to avoid trying to add duplicates
+          app.models.lang.create([
+            {
+              name: langsFromGithub[i]
+            }
+          ]);
+        }
+      }
+    }
+  }
 }
