@@ -1,0 +1,17 @@
+{
+  "ids": {
+    "site": 3,
+    "lang": 1,
+    "langAltName": 1,
+    "score": 1
+  },
+  "models": {
+    "site": {
+      "1": "{\"name\":\"github\",\"id\":1}",
+      "2": "{\"name\":\"stackoverflow\",\"id\":2}"
+    },
+    "lang": {},
+    "langAltName": {},
+    "score": {}
+  }
+}
