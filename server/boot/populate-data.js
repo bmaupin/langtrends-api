@@ -43,13 +43,20 @@ async function populateLang(app) {
     for (let j = 0, len = languages.length; j < len; j++) {
       if (langsFromGithub[i] === languages[j].name) {
         if (languages[j].include === true) {
-          // TODO: add code to avoid trying to add duplicates
-          app.models.lang.create([
-            {
-              name: langsFromGithub[i]
+          app.models.lang.findOne({where: {name: langsFromGithub[i]}}, function(err, lang) {
+            if (err) throw err;
+
+            if (lang === null) {
+              app.models.lang.create([
+                {
+                  name: langsFromGithub[i]
+                }
+              ]);
             }
-          ]);
+          });
         }
+
+        continue;
       }
     }
   }
