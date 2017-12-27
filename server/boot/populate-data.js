@@ -1,7 +1,7 @@
 'use strict';
 
-import Github from '../src/Github';
-import languages from '../src/lang/languages.json';
+const Github = require('../src/Github');
+const languages = require('../src/lang/languages.json');
 
 module.exports = function(app, cb) {
   /*

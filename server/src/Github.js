@@ -1,7 +1,7 @@
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
-export default class Github {
+module.exports = class Github {
   static async getLangNames() {
     const GITHUB_LANGUAGES_URL = 'https://github.com/search/advanced';
 
