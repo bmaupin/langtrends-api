@@ -1,6 +1,6 @@
 'use strict';
 
-import Github from '../src/site/Github';
+import Github from '../src/Github';
 import languages from '../src/lang/languages.json';
 
 module.exports = function(app, cb) {
