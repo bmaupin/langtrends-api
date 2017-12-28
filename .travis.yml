@@ -1,0 +1,4 @@
+language: node_js
+after_script:
+  # Send test coverage data to coveralls.io
+  - "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
