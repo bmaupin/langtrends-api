@@ -25,10 +25,10 @@ function populateSite(app) {
     if (count < 1) {
       app.models.site.create([
         {
-          name: 'github'
+          name: 'github',
         },
         {
-          name: 'stackoverflow'
+          name: 'stackoverflow',
         },
       ]);
     }
@@ -46,8 +46,8 @@ async function populateLang(app) {
         if (lang === null) {
           app.models.lang.create([
             {
-              name: languages[i].name
-            }
+              name: languages[i].name,
+            },
           ]);
         }
       });

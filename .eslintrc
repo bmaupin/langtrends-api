@@ -2,5 +2,30 @@
   "extends": "loopback",
   "parserOptions": {
     "ecmaVersion": 2017
+  },
+  "plugins": [
+    "json"
+  ],
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "max-len": [
+      "error",
+      120
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ]
   }
 }
