@@ -25,6 +25,7 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.1.2",
     "babel-preset-node8": "^1.2.0",
+    "coveralls": "^3.0.0",
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",
     "eslint-plugin-json": "^1.2.0",
