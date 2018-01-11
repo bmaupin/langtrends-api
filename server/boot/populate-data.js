@@ -38,7 +38,7 @@ function populateSite(app) {
 async function populateLang(app) {
   let langsFromGithub = await Github.getLangNames();
 
-  for (let i = 0, len = languages.length; i < len; i++) {
+  for (let i = 0; i < languages.length; i++) {
     if (languages[i].include === true && langsFromGithub.includes(languages[i].name)) {
       app.models.lang.findOne({where: {name: languages[i].name}}, function(err, lang) {
         if (err) throw err;
@@ -56,7 +56,7 @@ async function populateLang(app) {
     delete langsFromGithub[langsFromGithub.indexOf(languages[i].name)];
   }
 
-  for (let i = 0, len = langsFromGithub.length; i < len; i++) {
+  for (let i = 0; i < langsFromGithub.length; i++) {
     if (typeof langsFromGithub[i] !== 'undefined') {
       console.log(`DEBUG: Language from Github not found in languages.json: ${langsFromGithub[i]}`);
     }
