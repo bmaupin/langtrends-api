@@ -1,7 +1,7 @@
 'use strict';
 
 const Github = require('../src/Github');
-const languages = require('../src/lang/languages.json');
+const languages = require('./languages.json');
 
 module.exports = function(app, cb) {
   /*
