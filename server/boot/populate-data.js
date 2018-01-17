@@ -43,20 +43,24 @@ async function populateLang(app) {
 
     if (languages.hasOwnProperty(languageName)) {
       if (languages[languageName].include === true) {
-        app.models.lang.findOne({where: {name: languageName}}, function(err, lang) {
-          if (err) throw err;
-
-          if (lang === null) {
-            app.models.lang.create([
-              {
-                name: languageName,
-              },
-            ]);
-          }
-        });
+        addLanguage(app, languageName);
       }
     } else {
       console.log(`DEBUG: Language from Github not found in languages.json: ${languageName}`);
     }
   }
+}
+
+function addLanguage(app, languageName) {
+  app.models.lang.findOne({where: {name: languageName}}, function(err, lang) {
+    if (err) throw err;
+
+    if (lang === null) {
+      app.models.lang.create([
+        {
+          name: languageName,
+        },
+      ]);
+    }
+  });
 }
