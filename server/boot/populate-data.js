@@ -38,27 +38,25 @@ function populateSite(app) {
 async function populateLang(app) {
   let langsFromGithub = await Github.getLangNames();
 
-  for (let i = 0; i < languages.length; i++) {
-    if (languages[i].include === true && langsFromGithub.includes(languages[i].name)) {
-      app.models.lang.findOne({where: {name: languages[i].name}}, function(err, lang) {
-        if (err) throw err;
-
-        if (lang === null) {
-          app.models.lang.create([
-            {
-              name: languages[i].name,
-            },
-          ]);
-        }
-      });
-    }
-
-    delete langsFromGithub[langsFromGithub.indexOf(languages[i].name)];
-  }
-
   for (let i = 0; i < langsFromGithub.length; i++) {
-    if (typeof langsFromGithub[i] !== 'undefined') {
-      console.log(`DEBUG: Language from Github not found in languages.json: ${langsFromGithub[i]}`);
+    let languageName = langsFromGithub[i];
+
+    if (languages.hasOwnProperty(languageName)) {
+      if (languages[languageName].include === true) {
+        app.models.lang.findOne({where: {name: languageName}}, function(err, lang) {
+          if (err) throw err;
+
+          if (lang === null) {
+            app.models.lang.create([
+              {
+                name: languageName,
+              },
+            ]);
+          }
+        });
+      }
+    } else {
+      console.log(`DEBUG: Language from Github not found in languages.json: ${languageName}`);
     }
   }
 }
