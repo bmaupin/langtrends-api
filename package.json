@@ -6,7 +6,7 @@
     "node": ">=4"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint . --ext .json --ext .js",
     "start": "babel-node . --presets node8",
     "posttest": "npm run lint && nsp check",
     "test": "jest --coverage"
