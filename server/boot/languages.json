@@ -334,6 +334,13 @@
   "edn": {
     "include": false
   },
+  "Edje Data Collection": {
+    "description": "Data file containing instructions for Enlightenment window manager's Edje Compiler",
+    "extension": ".edc",
+    "include": false,
+    "type": "domain-specific language",
+    "url": "https://docs.enlightenment.org/auto/edcref.html"
+  },
   "Eiffel": {
     "include": true
   },
@@ -382,7 +389,10 @@
     "include": false,
     "url": "https://esolangs.org/wiki/Fish"
   },
-  "FLUX": {},
+  "FLUX": {
+    "desription": "Reshade .fx file?",
+    "include": false
+  },
   "Formatted": {
     "include": false,
     "url": "https://github.com/github/linguist/tree/master/samples/Formatted"
@@ -452,9 +462,13 @@
     "include": false,
     "url": "https://en.wikipedia.org/wiki/OpenGL_Shading_Language"
   },
-  "Glyph": {},
+  "Glyph": {
+    "description": "Pointwise's scripting language",
+    "extension": ".glf",
+    "include": false
+  },
   "GN": {
-    "description": "Generate Ninja,",
+    "description": "Generate Ninja",
     "extension": ".gn",
     "include": false,
     "url": "https://chromium.googlesource.com/chromium/src/tools/gn/+/HEAD/docs/language.md"
@@ -798,12 +812,21 @@
   "Mirah": {
     "include": true
   },
-  "Modelica": {},
+  "Modelica": {
+    "include": false,
+    "type": "modeling language"
+  },
   "Modula-2": {
     "include": true
   },
-  "Module Management System": {},
-  "Monkey": {},
+  "Module Management System": {
+    "description": "HPE Module Management System for OpenVMS",
+    "include": false
+  },
+  "Monkey": {
+    "include": false,
+    "type": "video game programming language"
+  },
   "Moocode": {
     "include": false,
     "url": "https://en.wikipedia.org/wiki/MOO"
@@ -817,7 +840,11 @@
   "MQL5": {
     "include": false
   },
-  "MTML": {},
+  "MTML": {
+    "description": "Movable Type Markup Language",
+    "include": false,
+    "type": "markup language"
+  },
   "MUF": {
     "description": "Multi-User Forth",
     "include": false,
@@ -971,7 +998,11 @@
     "include": false,
     "url": "https://www.compuphase.com/pawn/"
   },
-  "Pep8": {},
+  "Pep8": {
+    "description": "Pep/8 simulator assembly language",
+    "include": false,
+    "type": "hardware-specific programming language"
+  },
   "Perl": {
     "include": true
   },
@@ -985,7 +1016,11 @@
     "include": false,
     "url": "https://en.wikipedia.org/wiki/Pic_language"
   },
-  "Pickle": {},
+  "Pickle": {
+    "description": "Python Pickle data dump",
+    "include": false,
+    "type": "data"
+  },
   "PicoLisp": {
     "include": true
   },
@@ -1086,7 +1121,10 @@
   "RAML": {
     "include": false
   },
-  "Rascal": {},
+  "Rascal": {
+    "description": "RascalMPL",
+    "include": false
+  },
   "Raw token data": {
     "include": false
   },
@@ -1172,7 +1210,11 @@
   "Scala": {
     "include": true
   },
-  "Scaml": {},
+  "Scaml": {
+    "description": "Scala Markup Language",
+    "include": false,
+    "type": "markup language"
+  },
   "Scheme": {
     "include": true
   },
@@ -1185,7 +1227,11 @@
   "Self": {
     "include": true
   },
-  "ShaderLab": {},
+  "ShaderLab": {
+    "description": "Shading Language used in Unity",
+    "include": false,
+    "type": "domain-specific language"
+  },
   "Shell": {
     "include": true
   },
@@ -1203,7 +1249,11 @@
     "include": false,
     "url": "http://slim-lang.com/"
   },
-  "Smali": {},
+  "Smali": {
+    "description": "Disassembled Dalvik bytecode",
+    "include": false,
+    "type": "domain-specific language"
+  },
   "Smalltalk": {
     "include": true
   },
@@ -1299,7 +1349,10 @@
   "TeX": {
     "include": false
   },
-  "Text": {},
+  "Text": {
+    "description": "Plain text",
+    "include": false
+  },
   "Textile": {
     "include": false,
     "url": "https://en.wikipedia.org/wiki/Textile_(markup_language)"
