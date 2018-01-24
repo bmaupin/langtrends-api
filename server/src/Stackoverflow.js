@@ -9,7 +9,7 @@ const API_URL = 'https://api.stackexchange.com/2.2/search?todate=%s&site=stackov
 
 module.exports = class Stackoverflow {
   async getScore(langName, date) {
-    let url = util.format(API_URL, Stackoverflow._encodeDate(date), Stackoverflow._encodeLangName(langName));
+    let url = this._buildUrl(date, langName);
 
     // TODO: Add functionality to set API key
     /* TODO: handle API limitations in instance (https://stackapps.com/a/3057/41977)
@@ -19,9 +19,21 @@ module.exports = class Stackoverflow {
     let bodyJson = await this._httpsRequest(url);
     let body = JSON.parse(bodyJson);
 
+    // TODO: find and use a proper logging framework
     console.log(`DEBUG: StackOverflow API daily quota remaining: ${body.quota_remaining}`);
 
     return body.total;
+  }
+
+  set apiKey(newApiKey) {
+    this._apiKey = newApiKey;
+  }
+
+  _buildUrl(date, langName) {
+    let url = util.format(API_URL, Stackoverflow._encodeDate(date), Stackoverflow._encodeLangName(langName));
+    url = this._addApiKey(url);
+
+    return url;
   }
 
   static _encodeDate(date) {
@@ -32,6 +44,15 @@ module.exports = class Stackoverflow {
 
   static _encodeLangName(langName) {
     return encodeURIComponent(langName.toLowerCase().replace(/ /g, '-'));
+  }
+
+  _addApiKey(url) {
+    const KEY_PARAMETER = '&key=';
+    if (typeof this._apiKey !== 'undefined') {
+      url = `${url}${KEY_PARAMETER}${this._apiKey}`;
+    }
+
+    return url;
   }
 
   // TODO: clean this up and make it less generic?
