@@ -5,22 +5,26 @@ const {URL} = require('url');
 const util = require('util');
 const zlib = require('zlib');
 
+// Uses a custom filter that only returns backoff, quota_remaining, and total
+// (https://api.stackexchange.com/docs/create-filter#unsafe=false&filter=!.UE8F0bVg4M-_Ii4&run=true)
 const API_URL = 'https://api.stackexchange.com/2.2/search?todate=%s&site=stackoverflow&tagged=%s&filter=!.UE8F0bVg4M-_Ii4';
 
 module.exports = class Stackoverflow {
   async getScore(langName, date) {
     let url = this._buildUrl(date, langName);
 
-    // TODO: Add functionality to set API key
-    /* TODO: handle API limitations in instance (https://stackapps.com/a/3057/41977)
-     *  - Don't make more than 30 requests/second
-     *  - Handle backoff field
-     */
     let bodyJson = await this._httpsRequest(url);
     let body = JSON.parse(bodyJson);
 
     // TODO: find and use a proper logging framework
     console.log(`DEBUG: StackOverflow API daily quota remaining: ${body.quota_remaining}`);
+    /* TODO: handle API limitations (https://stackapps.com/a/3057/41977)
+     *  - Don't make more than 30 requests/second
+     *  - Handle backoff field
+     */
+    if (body.hasOwnProperty('backoff')) {
+      throw `StackOverflow API backoff field not handled: ${body.backoff}`;
+    }
 
     return body.total;
   }
