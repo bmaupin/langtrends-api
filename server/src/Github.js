@@ -1,14 +1,13 @@
 'use strict';
 
-const https = require('https');
+const CodingSite = require('./CodingSite');
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 const {URL} = require('url');
-const zlib = require('zlib');
 
 const API_URL = 'https://api.github.com/graphql';
 
-module.exports = class Github {
+module.exports = class Github extends CodingSite {
   static async getLangNames() {
     const GITHUB_LANGUAGES_URL = 'https://github.com/search/advanced';
 
@@ -35,15 +34,9 @@ module.exports = class Github {
     }
 
     let postData = this._buildPostData(date, langName);
-
-    let bodyJson = await this._httpsRequest(API_URL, postData);
-    let body = JSON.parse(bodyJson);
+    let body = await this._callApi(API_URL, postData);
 
     return body.data.search.repositoryCount;
-  }
-
-  set apiKey(newApiKey) {
-    this._apiKey = newApiKey;
   }
 
   _buildPostData(date, langName) {
@@ -63,10 +56,7 @@ module.exports = class Github {
     return date.toISOString().slice(0, 10);
   }
 
-  // TODO: clean this up and make it less generic?
-  //  - we don't need to handle compressed body
-  // Based on https://stackoverflow.com/a/38543075/399105
-  _httpsRequest(url, postData) {
+  async _callApi(url, postData) {
     const optionsUrl = new URL(url);
     const options = {
       headers: {
@@ -79,41 +69,7 @@ module.exports = class Github {
       path: optionsUrl.pathname,
     };
 
-    return new Promise(function(resolve, reject) {
-      let request = https.request(options, function(response) {
-        // Reject on bad status code
-        if (response.statusCode < 200 || response.statusCode >= 300) {
-          return reject(new Error('statusCode=' + response.statusCode));
-        }
-        let body = [];
-        response.on('data', function(chunk) {
-          body.push(chunk);
-        });
-        response.on('end', function() {
-          try {
-            switch (response.headers['content-encoding']) {
-              case 'gzip':
-                zlib.gunzip(Buffer.concat(body), (error, uncompressedData) => {
-                  resolve(uncompressedData.toString());
-                });
-                break;
-              default:
-                resolve(Buffer.concat(body).toString());
-                break;
-            }
-          } catch (e) {
-            reject(e);
-          }
-        });
-      });
-      // Reject on request error
-      request.on('error', function(err) {
-        reject(err);
-      });
-      if (postData) {
-        request.write(postData);
-      }
-      request.end();
-    });
+    let bodyJson = await CodingSite._httpsRequest(options, postData);
+    return JSON.parse(bodyJson);
   }
 };
