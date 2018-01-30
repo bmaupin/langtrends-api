@@ -802,8 +802,9 @@
     "url": "https://github.com/atmajs/MaskJS"
   },
   "Mathematica": {
-    "include": true,
-    "stackoverflowTag": "wolfram-mathematica"
+    "include": false,
+    "stackoverflowTag": "wolfram-mathematica",
+    "type": "domain-specific language"
   },
   "Matlab": {
     "include": false
@@ -1232,8 +1233,10 @@
     "url": "https://en.wikipedia.org/wiki/SageMath"
   },
   "SaltStack": {
-    "include": true,
-    "stackoverflowTag": "salt-stack"
+    "extension": ".sls",
+    "include": false,
+    "stackoverflowTag": "salt-stack",
+    "type": "domain-specific language"
   },
   "SAS": {
     "include": false
