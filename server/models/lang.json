@@ -9,6 +9,9 @@
     "name": {
       "type": "string",
       "required": true
+    },
+    "stackoverflowTag": {
+      "type": "string"
     }
   },
   "validations": [],

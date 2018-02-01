@@ -19,7 +19,7 @@ module.exports = function(app, cb) {
 };
 
 function populateSite(app) {
-  app.models.site.count(function(err, count) {
+  app.models.site.count((err, count) => {
     if (err) throw err;
 
     if (count < 1) {
@@ -43,7 +43,7 @@ async function populateLang(app) {
 
     if (languages.hasOwnProperty(languageName)) {
       if (languages[languageName].include === true) {
-        addLanguage(app, languageName);
+        addLanguage(app, languageName, languages[languageName].stackoverflowTag);
       }
     } else {
       console.log(`DEBUG: Language from Github not found in languages.json: ${languageName}`);
@@ -51,16 +51,21 @@ async function populateLang(app) {
   }
 }
 
-function addLanguage(app, languageName) {
-  app.models.lang.findOne({where: {name: languageName}}, function(err, lang) {
+function addLanguage(app, languageName, stackoverflowTag) {
+  app.models.lang.findOne({where: {name: languageName}}, (err, lang) => {
     if (err) throw err;
 
     if (lang === null) {
       app.models.lang.create([
         {
           name: languageName,
+          stackoverflowTag: stackoverflowTag,
         },
       ]);
+    } else if (typeof stackoverflowTag !== 'undefined' && typeof lang.stackoverflowTag === 'undefined') {
+      lang.updateAttribute('stackoverflowTag', stackoverflowTag, (err, lang) => {
+        if (err) throw err;
+      });
     }
   });
 }
