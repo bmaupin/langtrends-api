@@ -13,8 +13,11 @@ module.exports = class Stackoverflow extends CodingSite {
     let url = this._buildUrl(date, langName);
     let body = await this._callApi(url);
 
-    // TODO: find and use a proper logging framework
-    console.log(`DEBUG: StackOverflow API daily quota remaining: ${body.quota_remaining}`);
+    if (body.quota_remaining < 1000) {
+      // TODO: find and use a proper logging framework
+      console.log(`WARNING: StackOverflow API daily quota remaining: ${body.quota_remaining}`);
+    }
+
     /* TODO: handle API limitations (https://stackapps.com/a/3057/41977)
      *  - Don't make more than 30 requests/second
      *  - Handle backoff field
