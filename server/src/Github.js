@@ -48,7 +48,7 @@ module.exports = class Github extends CodingSite {
 
   static _encodeLangName(langName) {
     // Github API requires spaces in language names to be replaced with dashes
-    return encodeURIComponent(langName.replace(/ /g, '-'));
+    return langName.replace(/ /g, '-');
   }
 
   static _encodeDate(date) {
