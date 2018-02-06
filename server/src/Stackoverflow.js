@@ -23,7 +23,7 @@ module.exports = class Stackoverflow extends CodingSite {
      *  - Handle backoff field
      */
     if (body.hasOwnProperty('backoff')) {
-      throw `StackOverflow API backoff field not handled: ${body.backoff}`;
+      throw new Error(`StackOverflow API backoff field not handled: ${body.backoff}`);
     }
 
     return body.total;

@@ -30,7 +30,7 @@ module.exports = class Github extends CodingSite {
   async getScore(langName, date) {
     // API key can't be null for the GraphQL API (https://platform.github.community/t/anonymous-access/2093)
     if (typeof this._apiKey === 'undefined') {
-      throw 'apiKey cannot be null';
+      throw new Error('apiKey cannot be null');
     }
 
     let postData = this._buildPostData(date, langName);
