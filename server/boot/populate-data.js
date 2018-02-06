@@ -43,7 +43,7 @@ async function populateLang(app) {
 
     if (languages.hasOwnProperty(languageName)) {
       if (languages[languageName].include === true) {
-        addLanguage(app, languageName, languages[languageName].stackoverflowTag);
+        await addLanguage(app, languageName, languages[languageName].stackoverflowTag);
       }
     } else {
       console.log(`DEBUG: Language from Github not found in languages.json: ${languageName}`);
@@ -52,20 +52,24 @@ async function populateLang(app) {
 }
 
 function addLanguage(app, languageName, stackoverflowTag) {
-  app.models.lang.findOne({where: {name: languageName}}, (err, lang) => {
-    if (err) throw err;
+  return new Promise((resolve, reject) => {
+    // TODO: update this to use findOrCreate
+    app.models.lang.findOne({where: {name: languageName}}, (err, lang) => {
+      if (err) reject(err);
 
-    if (lang === null) {
-      app.models.lang.create([
-        {
-          name: languageName,
-          stackoverflowTag: stackoverflowTag,
-        },
-      ]);
-    } else if (typeof stackoverflowTag !== 'undefined' && typeof lang.stackoverflowTag === 'undefined') {
-      lang.updateAttribute('stackoverflowTag', stackoverflowTag, (err, lang) => {
-        if (err) throw err;
-      });
-    }
+      if (lang === null) {
+        app.models.lang.create([
+          {
+            name: languageName,
+            stackoverflowTag: stackoverflowTag,
+          },
+        ]);
+      } else if (typeof stackoverflowTag !== 'undefined' && typeof lang.stackoverflowTag === 'undefined') {
+        lang.updateAttribute('stackoverflowTag', stackoverflowTag, (err, lang) => {
+          if (err) reject(err);
+        });
+      }
+      resolve();
+    });
   });
 }
