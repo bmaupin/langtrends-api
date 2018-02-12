@@ -1092,7 +1092,8 @@
     "url": "https://en.wikipedia.org/wiki/PowerBuilder"
   },
   "PowerShell": {
-    "include": true
+    "include": false,
+    "type": "domain-specific language"
   },
   "Processing": {
     "include": false
@@ -1270,7 +1271,8 @@
     "type": "domain-specific language"
   },
   "Shell": {
-    "include": true
+    "include": false,
+    "type": "domain-specific language"
   },
   "ShellSession": {
     "include": false
