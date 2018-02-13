@@ -30,7 +30,6 @@
     "eslint-config-loopback": "^8.0.0",
     "eslint-plugin-json": "^1.2.0",
     "jest": "^22.2.2",
-    "lodash": "^3.10.1",
     "nsp": "^2.1.0"
   },
   "repository": {
