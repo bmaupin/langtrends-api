@@ -10,7 +10,7 @@
       "type": "date",
       "required": true
     },
-    "score": {
+    "points": {
       "type": "number",
       "required": true
     }
