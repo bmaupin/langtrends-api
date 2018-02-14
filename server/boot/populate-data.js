@@ -53,23 +53,20 @@ async function populateLang(app) {
 
 function addLanguage(app, languageName, stackoverflowTag) {
   return new Promise((resolve, reject) => {
-    // TODO: update this to use findOrCreate
-    app.models.lang.findOne({where: {name: languageName}}, (err, lang) => {
-      if (err) reject(err);
-
-      if (lang === null) {
-        app.models.lang.create([
-          {
-            name: languageName,
-            stackoverflowTag: stackoverflowTag,
-          },
-        ]);
-      } else if (typeof stackoverflowTag !== 'undefined' && typeof lang.stackoverflowTag === 'undefined') {
-        lang.updateAttribute('stackoverflowTag', stackoverflowTag, (err, lang) => {
-          if (err) reject(err);
-        });
+    // Do an upsert in case stackoverflowTag changes
+    app.models.lang.upsertWithWhere(
+      { name: languageName },
+      {
+        name: languageName,
+        stackoverflowTag: stackoverflowTag,
+      },
+      // Oddly enough this only works if the validations are ignored
+      // https://github.com/strongloop/loopback-component-passport/issues/123#issue-131073519
+      { validate: false },
+      (err, lang) => {
+        if (err) reject(err);
+        resolve();
       }
-      resolve();
-    });
+    );
   });
 }
