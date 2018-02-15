@@ -104,7 +104,7 @@ async function getTopLangs(app, numberOfLanguages, date) {
 
 function getScoreCount(app, date) {
   return new Promise((resolve, reject) => {
-    app.models.score.count({where: {date: date}}, (err, count) => {
+    app.models.score.count({date: date}, (err, count) => {
       if (err) reject(err);
       resolve(count);
     });
