@@ -104,7 +104,8 @@
     "include": true
   },
   "Ballerina": {
-    "include": true
+    "include": true,
+    "stackoverflowTag": "ballerinalang"
   },
   "Batchfile": {
     "include": false,
@@ -172,7 +173,10 @@
     "include": true
   },
   "Charity": {
-    "include": true
+    "description": "Abandoned purely functional programming language based on category theory",
+    "extension": ".ch",
+    "include": false,
+    "url": "https://en.wikipedia.org/wiki/Charity_(programming_language)"
   },
   "ChucK": {
     "include": false
@@ -238,7 +242,8 @@
     "include": false
   },
   "Crystal": {
-    "include": true
+    "include": true,
+    "stackoverflowTag": "crystal-lang"
   },
   "CSON": {
     "include": false
@@ -328,7 +333,9 @@
     "include": false
   },
   "eC": {
-    "include": true
+    "description": "Ecere C",
+    "include": true,
+    "url": "http://ec-lang.org/"
   },
   "Ecere Projects": {
     "include": false
@@ -369,10 +376,15 @@
     "stackoverflowTag": "elisp"
   },
   "EmberScript": {
-    "include": true
+    "description": "CoffeeScript derived language that has first-class support for the Ember.js runtime",
+    "include": true,
+    "url": "http://emberscript.com/"
   },
   "EQ": {
-    "include": true
+    "description": "Also known as Eqela. Superseded by Sling",
+    "extension": ".eq",
+    "include": false,
+    "url": "http://eqdn.tech/eq/"
   },
   "Erlang": {
     "include": true
@@ -385,7 +397,8 @@
     "stackoverflowTag": "factor-lang"
   },
   "Fancy": {
-    "include": true
+    "include": true,
+    "url": "http://www.fancy-lang.org/"
   },
   "Fantom": {
     "include": true
@@ -497,13 +510,18 @@
     "include": true
   },
   "Golo": {
-    "include": true
+    "description": "A lightweight dynamic language for the JVM",
+    "include": true,
+    "url": "http://golo-lang.org/"
   },
   "Gosu": {
     "include": true
   },
   "Grace": {
-    "include": true
+    "description": "A modern programming language designed to be used in teaching novices how to program in an object-oriented style",
+    "include": false,
+    "type": "educational programming language",
+    "url": "http://gracelang.org"
   },
   "Gradle": {
     "include": false
@@ -541,7 +559,9 @@
     "include": false
   },
   "Harbour": {
-    "include": true
+    "description": "Cross-platform, multi-threading, object-oriented, scriptable programming language, backwards compatible with xBase languages",
+    "include": true,
+    "url": "https://harbour.github.io/"
   },
   "Haskell": {
     "include": true
@@ -723,7 +743,10 @@
     "include": false
   },
   "Limbo": {
-    "include": true
+    "description": "A concurrent programming language for the Inferno operating system",
+    "include": false,
+    "type": "domain-specific language",
+    "url": "http://limbo.cat-v.org/"
   },
   "Linker Script": {
     "include": false
@@ -837,7 +860,8 @@
     "url": "https://developer.apple.com/metal/"
   },
   "MiniD": {
-    "include": true
+    "description": "Small, lightweight extension lanugage superseded by Croc",
+    "include": false
   },
   "Mirah": {
     "include": true
@@ -925,7 +949,8 @@
     "url": "https://ninja-build.org/"
   },
   "Nit": {
-    "include": true
+    "include": true,
+    "url": "https://nitlanguage.org/"
   },
   "Nix": {
     "include": false,
@@ -966,7 +991,9 @@
     "include": false
   },
   "ooc": {
-    "include": true
+    "description": "Small programming language that compiles to C99",
+    "include": true,
+    "url": "https://ooc-lang.org/"
   },
   "Opa": {
     "include": true
@@ -1124,7 +1151,9 @@
     "url": "https://en.wikipedia.org/wiki/Pure_Data"
   },
   "PureBasic": {
-    "include": true
+    "description": "Commercially distributed procedural programming language based on BASIC",
+    "include": true,
+    "url": "http://www.purebasic.com/"
   },
   "PureScript": {
     "include": true
@@ -1330,7 +1359,8 @@
     "stackoverflowTag": "db2"
   },
   "Squirrel": {
-    "include": true
+    "include": true,
+    "url": "http://www.squirrel-lang.org/"
   },
   "SRecode Template": {
     "include": false,
@@ -1383,10 +1413,14 @@
     "include": false
   },
   "Tea": {
-    "include": true
+    "description": "High level scripting language for the Java environment",
+    "include": true,
+    "url": "https://en.wikipedia.org/wiki/Tea_(programming_language)"
   },
   "Terra": {
-    "include": true
+    "description": "Low-level system programming language that is embedded in and meta-programmed by the Lua programming language",
+    "include": true,
+    "url": "http://terralang.org/"
   },
   "TeX": {
     "include": false
@@ -1513,7 +1547,9 @@
     "url": "https://en.wikipedia.org/wiki/Web_IDL"
   },
   "wisp": {
-    "include": true
+    "description": "Homoiconic JS dialect with a clojure syntax, s-expressions and macros",
+    "include": true,
+    "url": "https://gozala.github.io/wisp/"
   },
   "World of Warcraft Addon Data": {
     "include": false
