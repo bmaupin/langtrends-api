@@ -140,8 +140,8 @@ async function getAllScores(app, date) {
     let languageName = langs[i].name;
 
     let githubScore = await github.getScore(languageName, date);
-    // TODO use correct stackoverflow tag
-    let stackoverflowScore = await stackoverflow.getScore(languageName, date);
+    let stackoverflowTag = await getStackoverflowTag(app, languageName);
+    let stackoverflowScore = await stackoverflow.getScore(stackoverflowTag, date);
     if (stackoverflowScore === 0) {
       console.log(`WARNING: stackoverflow tag not found for ${languageName}`);
     }
@@ -150,6 +150,24 @@ async function getAllScores(app, date) {
   }
 
   return scores;
+}
+
+async function getStackoverflowTag(app, languageName) {
+  return new Promise((resolve, reject) => {
+    app.models.lang.findOne({where: {name: languageName}}, (err, lang) => {
+      if (err) throw err;
+
+      if (lang !== null) {
+        if (typeof lang.stackoverflowTag === 'undefined') {
+          resolve(languageName);
+        } else {
+          resolve(lang.stackoverflowTag);
+        }
+      } else {
+        reject(`Language ${languageName} not found`);
+      }
+    });
+  });
 }
 
 function getAllLanguages(app) {
