@@ -124,9 +124,21 @@ async function getTopLangsFromApi(app, numberOfLanguages, date) {
 }
 
 async function getAllScores(app, date) {
-  let github = new Github();
   let langs = await getAllLanguages(app);
   let scores = {};
+
+  for (let i = 0; i < langs.length; i++) {
+    let languageName = langs[i].name;
+
+    // TODO: do these all at once, or n at a time
+    scores[languageName] = await getScore(app, date, languageName);
+  }
+
+  return scores;
+}
+
+async function getScore(app, date, languageName) {
+  let github = new Github();
   let stackoverflow = new Stackoverflow();
 
   if (process.env.hasOwnProperty('GITHUB_API_KEY')) {
@@ -136,20 +148,14 @@ async function getAllScores(app, date) {
     stackoverflow.apiKey = process.env.STACKOVERFLOW_API_KEY;
   }
 
-  for (let i = 0; i < langs.length; i++) {
-    let languageName = langs[i].name;
-
-    let githubScore = await github.getScore(languageName, date);
-    let stackoverflowTag = await getStackoverflowTag(app, languageName);
-    let stackoverflowScore = await stackoverflow.getScore(stackoverflowTag, date);
-    if (stackoverflowScore === 0) {
-      console.log(`WARNING: stackoverflow tag not found for ${languageName}`);
-    }
-
-    scores[languageName] = githubScore + stackoverflowScore;
+  let githubScore = await github.getScore(languageName, date);
+  let stackoverflowTag = await getStackoverflowTag(app, languageName);
+  let stackoverflowScore = await stackoverflow.getScore(stackoverflowTag, date);
+  if (stackoverflowScore === 0) {
+    console.log(`WARNING: stackoverflow tag not found for ${languageName}`);
   }
 
-  return scores;
+  return githubScore + stackoverflowScore;
 }
 
 async function getStackoverflowTag(app, languageName) {
