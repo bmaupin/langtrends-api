@@ -115,9 +115,10 @@ async function getTopLangsFromApi(app, numberOfLanguages, date) {
   let scores = await getAllScores(app, date);
   let topLangs = getTopItems(scores, numberOfLanguages);
 
+  // TODO: do these all at once using Promise.all
   for (let i = 0; i < topLangs.length; i++) {
     let languageName = topLangs[i];
-    addScore(app, date, languageName, scores[languageName]);
+    await addScore(app, date, languageName, scores[languageName]);
   }
 
   return topLangs;
@@ -198,29 +199,31 @@ function getTopItems(obj, numberOfItems) {
 }
 
 function addScore(app, date, languageName, points) {
-  // TODO: wrap this in a promise??
-  app.models.lang.findOne({where: {name: languageName}}, (err, lang) => {
-    if (err) throw err;
+  return new Promise((resolve, reject) => {
+    app.models.lang.findOne({where: {name: languageName}}, (err, lang) => {
+      if (err) reject(err);
 
-    if (lang !== null) {
-      // Do an upsert because we don't want duplicate scores per date/language
-      app.models.score.upsertWithWhere(
-        {
-          date: date,
-          langId: lang.id,
-        },
-        {
-          date: date,
-          lang: lang,
-          points: points,
-        },
-        (err, score) => {
-          if (err) throw err;
-        }
-      );
-    } else {
-      throw new Error(`Language ${languageName} not found`);
-    }
+      if (lang !== null) {
+        // Do an upsert because we don't want duplicate scores per date/language
+        app.models.score.upsertWithWhere(
+          {
+            date: date,
+            langId: lang.id,
+          },
+          {
+            date: date,
+            lang: lang,
+            points: points,
+          },
+          (err, score) => {
+            if (err) reject(err);
+          }
+        );
+      } else {
+        reject(`Language ${languageName} not found`);
+      }
+      resolve();
+    });
   });
 }
 
