@@ -13,15 +13,14 @@ module.exports = function(app, cb) {
    * for more info.
    */
 
-  populateSite(app);
-  populateLang(app).then(() => {
-    populateScores(app);
-    // TODO: when should we run this? Before populating all scores? Or maybe just after a certain number
-    process.nextTick(cb);
+  populateAllSites(app);
+  populateAllLangs(app).then(() => {
+    populateAllScores(app, cb);
   });
 };
 
-function populateSite(app) {
+// TODO: remove this or make it return a promise
+function populateAllSites(app) {
   app.models.site.count((err, count) => {
     if (err) throw err;
 
@@ -38,7 +37,7 @@ function populateSite(app) {
   });
 }
 
-async function populateLang(app) {
+async function populateAllLangs(app) {
   let langsFromGithub = await Github.getLangNames();
 
   for (let i = 0; i < langsFromGithub.length; i++) {
@@ -74,14 +73,31 @@ function addLanguage(app, languageName, stackoverflowTag) {
   });
 }
 
-async function populateScores(app) {
+async function populateAllScores(app, cb) {
+  const FIRST_DATE = new Date(Date.UTC(2007, 9)); // 2007-10-01 00:00:00 UTC
   const NUM_LANGUAGES = 10;
-  const firstDayOfMonth = getFirstDayOfMonth();
+  let date = getFirstDayOfMonth();
 
-  let topLangs = await getTopLangs(app, NUM_LANGUAGES, firstDayOfMonth);
+  let topLangs = await getTopLangs(app, NUM_LANGUAGES, date);
 
   // TODO
   console.log(topLangs);
+
+  // TODO make this code clearer
+  for (let i = 0; date >= FIRST_DATE; i++) {
+    date.setUTCMonth(date.getUTCMonth() - 1);
+    // TODO
+    console.log(`${i}: ${date}`);
+
+    await populateScores(app, date, topLangs);
+
+    // Tell the app we're ready after the most recent year's scores are populated
+    if (i === 10) {
+      process.nextTick(cb);
+      // TODO
+      break;
+    }
+  }
 }
 
 function getFirstDayOfMonth() {
@@ -159,7 +175,7 @@ async function getScore(app, date, languageName) {
   return githubScore + stackoverflowScore;
 }
 
-async function getStackoverflowTag(app, languageName) {
+function getStackoverflowTag(app, languageName) {
   return new Promise((resolve, reject) => {
     app.models.lang.findOne({where: {name: languageName}}, (err, lang) => {
       if (err) throw err;
@@ -229,4 +245,48 @@ function addScore(app, date, languageName, points) {
 
 async function getTopLangsFromDb(app, numberOfLanguages, date) {
   throw 'unimplemented';
+}
+
+function populateScores(app, date, languages) {
+  return new Promise((resolve, reject) => {
+    let promises = [];
+
+    for (let i = 0; i < languages.length; i++) {
+      promises.push(populateScore(app, date, languages[i]));
+    }
+
+    Promise.all(promises).then(
+      values => { resolve(); },
+      reason => { reject(reason); }
+    );
+  });
+}
+
+function populateScore(app, date, languageName) {
+  return new Promise((resolve, reject) => {
+    app.models.lang.findOne({where: {name: languageName}}, (err, lang) => {
+      if (err) throw err;
+
+      if (lang !== null) {
+        app.models.score.findOne(
+          {
+            where: {
+              date: date,
+              langId: lang.id,
+            },
+          },
+          async (err, score) => {
+            if (err) reject(err);
+            if (score === null) {
+              let points = await getScore(app, date, languageName);
+              await addScore(app, date, languageName, points);
+            }
+            resolve();
+          }
+        );
+      } else {
+        reject(`Language ${languageName} not found`);
+      }
+    });
+  });
 }
