@@ -93,9 +93,9 @@ async function populateAllScores(app, cb) {
 
     // Tell the app we're ready after the most recent year's scores are populated
     if (i === 10) {
-      process.nextTick(cb);
       // TODO
-      break;
+      return;
+      process.nextTick(cb);
     }
   }
 }
@@ -127,31 +127,55 @@ function getScoreCount(app, date) {
   });
 }
 
-async function getTopLangsFromApi(app, numberOfLanguages, date) {
-  let scores = await getAllScores(app, date);
-  let topLangs = getTopItems(scores, numberOfLanguages);
+function getTopLangsFromApi(app, numberOfLanguages, date) {
+  return new Promise(async (resolve, reject) => {
+    let promises = [];
+    let scores = await getAllScores(app, date);
+    let topLangs = getTopItems(scores, numberOfLanguages);
 
-  // TODO: do these all at once using Promise.all
-  for (let i = 0; i < topLangs.length; i++) {
-    let languageName = topLangs[i];
-    await addScore(app, date, languageName, scores[languageName]);
-  }
+    for (let i = 0; i < topLangs.length; i++) {
+      let languageName = topLangs[i];
+      promises.push(addScore(app, date, languageName, scores[languageName]));
+    }
 
-  return topLangs;
+    Promise.all(promises).then(
+      values => { resolve(topLangs); },
+      reason => { reject(reason); }
+    );
+  });
 }
 
 async function getAllScores(app, date) {
-  let langs = await getAllLanguages(app);
+  let languages = await getAllLanguages(app);
   let scores = {};
 
-  for (let i = 0; i < langs.length; i++) {
-    let languageName = langs[i].name;
-
-    // TODO: do these all at once, or n at a time
-    scores[languageName] = await getScore(app, date, languageName);
+  while (languages.length !== 0) {
+    Object.assign(scores, await getScores(app, date, languages.splice(0, Stackoverflow.MAX_REQUESTS_PER_SECOND)));
   }
 
   return scores;
+}
+
+function getScores(app, date, languages) {
+  return new Promise((resolve, reject) => {
+    let promises = [];
+    let scores = {};
+
+    for (let i = 0; i < languages.length; i++) {
+      let languageName = languages[i].name;
+      promises.push(
+        getScore(app, date, languageName).then((score, reason) => {
+          if (reason) reject(reason);
+          scores[languageName] = score;
+        })
+      );
+    }
+
+    Promise.all(promises).then(
+      values => { resolve(scores); },
+      reason => { reject(reason); }
+    );
+  });
 }
 
 async function getScore(app, date, languageName) {
