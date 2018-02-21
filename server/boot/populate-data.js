@@ -243,8 +243,28 @@ function addScore(app, date, languageName, points) {
   });
 }
 
-async function getTopLangsFromDb(app, numberOfLanguages, date) {
-  throw 'unimplemented';
+function getTopLangsFromDb(app, numberOfLanguages, date) {
+  return new Promise((resolve, reject) => {
+    app.models.score.find(
+      {
+        fields: {langId: true},
+        include: 'lang',
+        limit: numberOfLanguages,
+        order: 'points DESC',
+        where: {date: date},
+      },
+      (err, scores) => {
+        if (err) throw err;
+
+        if (scores === null) {
+          reject(`No scores found for date: ${date}`);
+        }
+
+        // Apparently score.lang is a function
+        resolve(scores.map(score => score.lang().name));
+      }
+    );
+  });
 }
 
 function populateScores(app, date, languages) {
