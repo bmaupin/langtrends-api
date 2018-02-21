@@ -8,7 +8,7 @@ const util = require('util');
 // (https://api.stackexchange.com/docs/create-filter#unsafe=false&filter=!.UE8F0bVg4M-_Ii4&run=true)
 const API_URL = 'https://api.stackexchange.com/2.2/search?todate=%s&site=stackoverflow&tagged=%s&filter=!.UE8F0bVg4M-_Ii4';
 
-module.exports = class Stackoverflow extends CodingSite {
+class Stackoverflow extends CodingSite {
   async getScore(langName, date) {
     let url = this._buildUrl(date, langName);
     let body = await this._callApi(url);
@@ -62,3 +62,7 @@ module.exports = class Stackoverflow extends CodingSite {
     return url;
   }
 };
+
+Stackoverflow.MAX_REQUESTS_PER_SECOND = 30;
+
+module.exports = Stackoverflow;
