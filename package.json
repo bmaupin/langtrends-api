@@ -12,13 +12,12 @@
     "test": "jest --coverage"
   },
   "dependencies": {
-    "compression": "^1.0.3",
+    "compression": "^1.7.2",
     "cors": "^2.5.2",
-    "helmet": "^3.11.0",
     "jsdom": "^11.6.2",
     "loopback": "^3.18.2",
     "loopback-boot": "^2.6.5",
-    "loopback-component-explorer": "^5.0.0",
+    "loopback-component-explorer": "^5.3.0",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^2.3.1"
   },
@@ -29,7 +28,7 @@
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",
     "eslint-plugin-json": "^1.2.0",
-    "jest": "^22.2.2",
+    "jest": "^22.4.0",
     "nsp": "^2.1.0"
   },
   "repository": {
