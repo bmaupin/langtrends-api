@@ -7,6 +7,6 @@ module.exports = function(app, cb) {
 
   dataPopulator.populateAllSites();
   dataPopulator.populateAllLangs().then(() => {
-    dataPopulator.populateAllScores();
+    dataPopulator.populateTopScores();
   });
 };

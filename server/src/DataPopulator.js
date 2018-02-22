@@ -8,6 +8,15 @@ module.exports = class DataPopulator {
   constructor(app, cb) {
     this._app = app;
     this._cb = cb;
+    this._github = new Github();
+    this._stackoverflow = new Stackoverflow();
+
+    if (process.env.hasOwnProperty('GITHUB_API_KEY')) {
+      this._github.apiKey = process.env.GITHUB_API_KEY;
+    }
+    if (process.env.hasOwnProperty('STACKOVERFLOW_API_KEY')) {
+      this._stackoverflow.apiKey = process.env.STACKOVERFLOW_API_KEY;
+    }
   }
 
   // TODO: remove this or make it return a promise
@@ -64,7 +73,7 @@ module.exports = class DataPopulator {
     });
   }
 
-  async populateAllScores() {
+  async populateTopScores() {
     const FIRST_DATE = new Date(Date.UTC(2007, 9)); // 2007-10-01 00:00:00 UTC
     const NUM_LANGUAGES = 10;
     let date = DataPopulator._getFirstDayOfMonth();
@@ -122,7 +131,7 @@ module.exports = class DataPopulator {
     return new Promise(async (resolve, reject) => {
       let promises = [];
       let scores = await this._getAllScores(date);
-      let topLangs = this._getTopItems(scores, numberOfLanguages);
+      let topLangs = DataPopulator._getTopItems(scores, numberOfLanguages);
 
       for (let i = 0; i < topLangs.length; i++) {
         let languageName = topLangs[i];
@@ -170,20 +179,9 @@ module.exports = class DataPopulator {
   }
 
   async _getScore(date, languageName) {
-    // TODO: use class variables for github/stackoverflow
-    let github = new Github();
-    let stackoverflow = new Stackoverflow();
-
-    if (process.env.hasOwnProperty('GITHUB_API_KEY')) {
-      github.apiKey = process.env.GITHUB_API_KEY;
-    }
-    if (process.env.hasOwnProperty('STACKOVERFLOW_API_KEY')) {
-      stackoverflow.apiKey = process.env.STACKOVERFLOW_API_KEY;
-    }
-
-    let githubScore = await github.getScore(languageName, date);
+    let githubScore = await this._github.getScore(languageName, date);
     let stackoverflowTag = await this._getStackoverflowTag(languageName);
-    let stackoverflowScore = await stackoverflow.getScore(stackoverflowTag, date);
+    let stackoverflowScore = await this._stackoverflow.getScore(stackoverflowTag, date);
     if (stackoverflowScore === 0) {
       console.log(`WARNING: stackoverflow tag not found for ${languageName}`);
     }
@@ -223,7 +221,7 @@ module.exports = class DataPopulator {
     });
   }
 
-  _getTopItems(obj, numberOfItems) {
+  static _getTopItems(obj, numberOfItems) {
     // https://stackoverflow.com/a/39442287/399105
     let sortedKeys = Object.keys(obj).sort((a, b) => obj[b] - obj[a]);
 
