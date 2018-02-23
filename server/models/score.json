@@ -17,19 +17,19 @@
   },
   "validations": [],
   "relations": {
-    "lang": {
+    "language": {
       "type": "belongsTo",
-      "model": "lang",
+      "model": "language",
       "foreignKey": ""
     }
   },
   "acls": [],
   "methods": {},
   "indexes": {
-    "dateLangUniqueIndex": {
+    "dateLanguageUniqueIndex": {
       "keys": {
         "date": 1,
-        "lang": 1
+        "language": 1
       },
       "options": {
         "unique": true

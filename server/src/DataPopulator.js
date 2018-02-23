@@ -19,11 +19,11 @@ module.exports = class DataPopulator {
     }
   }
 
-  async populateAllLangs() {
-    let langsFromGithub = await Github.getLangNames();
+  async populateAllLanguages() {
+    let languagesFromGithub = await Github.getLanguageNames();
 
-    for (let i = 0; i < langsFromGithub.length; i++) {
-      let languageName = langsFromGithub[i];
+    for (let i = 0; i < languagesFromGithub.length; i++) {
+      let languageName = languagesFromGithub[i];
 
       if (languages.hasOwnProperty(languageName)) {
         if (languages[languageName].include === true) {
@@ -38,7 +38,7 @@ module.exports = class DataPopulator {
   _addLanguage(languageName, stackoverflowTag) {
     return new Promise((resolve, reject) => {
       // Do an upsert in case stackoverflowTag changes
-      this._app.models.lang.upsertWithWhere(
+      this._app.models.language.upsertWithWhere(
         {name: languageName},
         {
           name: languageName,
@@ -47,7 +47,7 @@ module.exports = class DataPopulator {
         // Oddly enough this only works if the validations are ignored
         // https://github.com/strongloop/loopback-component-passport/issues/123#issue-131073519
         {validate: false},
-        (err, lang) => {
+        (err, language) => {
           if (err) reject(err);
           resolve();
         }
@@ -60,10 +60,10 @@ module.exports = class DataPopulator {
     const NUM_LANGUAGES = 10;
     let date = DataPopulator._getFirstDayOfMonth();
 
-    let topLangs = await this._getTopLangs(NUM_LANGUAGES, date);
+    let topLanguages = await this._getTopLanguages(NUM_LANGUAGES, date);
 
     // TODO
-    console.log(topLangs);
+    console.log(topLanguages);
 
     // TODO make this code clearer
     for (let i = 0; date >= FIRST_DATE; i++) {
@@ -71,7 +71,7 @@ module.exports = class DataPopulator {
       // TODO
       console.log(`${i}: ${date}`);
 
-      await this._populateScores(date, topLangs);
+      await this._populateScores(date, topLanguages);
 
       // Tell the app we're ready after the most recent year's scores are populated
       if (i === 10) {
@@ -87,17 +87,17 @@ module.exports = class DataPopulator {
     return new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth()));
   }
 
-  async _getTopLangs(numberOfLanguages, date) {
+  async _getTopLanguages(numberOfLanguages, date) {
     let scoreCount = await this._getScoreCount(date);
-    let topLangs = [];
+    let topLanguages = [];
 
     if (scoreCount < numberOfLanguages) {
-      topLangs = await this._getTopLangsFromApi(numberOfLanguages, date);
+      topLanguages = await this._getTopLanguagesFromApi(numberOfLanguages, date);
     } else {
-      topLangs = await this._getTopLangsFromDb(numberOfLanguages, date);
+      topLanguages = await this._getTopLanguagesFromDb(numberOfLanguages, date);
     }
 
-    return topLangs;
+    return topLanguages;
   }
 
   _getScoreCount(date) {
@@ -109,19 +109,19 @@ module.exports = class DataPopulator {
     });
   }
 
-  _getTopLangsFromApi(numberOfLanguages, date) {
+  _getTopLanguagesFromApi(numberOfLanguages, date) {
     return new Promise(async (resolve, reject) => {
       let promises = [];
       let scores = await this._getAllScores(date);
-      let topLangs = DataPopulator._getTopItems(scores, numberOfLanguages);
+      let topLanguages = DataPopulator._getTopItems(scores, numberOfLanguages);
 
-      for (let i = 0; i < topLangs.length; i++) {
-        let languageName = topLangs[i];
+      for (let i = 0; i < topLanguages.length; i++) {
+        let languageName = topLanguages[i];
         promises.push(this._addScore(date, languageName, scores[languageName]));
       }
 
       Promise.all(promises).then(
-        values => { resolve(topLangs); },
+        values => { resolve(topLanguages); },
         reason => { reject(reason); }
       );
     });
@@ -173,14 +173,14 @@ module.exports = class DataPopulator {
 
   _getStackoverflowTag(languageName) {
     return new Promise((resolve, reject) => {
-      this._app.models.lang.findOne({where: {name: languageName}}, (err, lang) => {
+      this._app.models.language.findOne({where: {name: languageName}}, (err, language) => {
         if (err) throw err;
 
-        if (lang !== null) {
-          if (typeof lang.stackoverflowTag === 'undefined') {
+        if (language !== null) {
+          if (typeof language.stackoverflowTag === 'undefined') {
             resolve(languageName);
           } else {
-            resolve(lang.stackoverflowTag);
+            resolve(language.stackoverflowTag);
           }
         } else {
           reject(`Language ${languageName} not found`);
@@ -191,14 +191,14 @@ module.exports = class DataPopulator {
 
   _getAllLanguages() {
     return new Promise((resolve, reject) => {
-      this._app.models.lang.all((err, langs) => {
+      this._app.models.language.all((err, languages) => {
         if (err) throw err;
 
-        if (langs === null) {
+        if (languages === null) {
           reject('Languages must be populated before scores can be populated');
         }
 
-        resolve(langs);
+        resolve(languages);
       });
     });
   }
@@ -212,19 +212,19 @@ module.exports = class DataPopulator {
 
   _addScore(date, languageName, points) {
     return new Promise((resolve, reject) => {
-      this._app.models.lang.findOne({where: {name: languageName}}, (err, lang) => {
+      this._app.models.language.findOne({where: {name: languageName}}, (err, language) => {
         if (err) reject(err);
 
-        if (lang !== null) {
+        if (language !== null) {
           // Do an upsert because we don't want duplicate scores per date/language
           this._app.models.score.upsertWithWhere(
             {
               date: date,
-              langId: lang.id,
+              languageId: language.id,
             },
             {
               date: date,
-              lang: lang,
+              language: language,
               points: points,
             },
             (err, score) => {
@@ -239,12 +239,12 @@ module.exports = class DataPopulator {
     });
   }
 
-  _getTopLangsFromDb(numberOfLanguages, date) {
+  _getTopLanguagesFromDb(numberOfLanguages, date) {
     return new Promise((resolve, reject) => {
       this._app.models.score.find(
         {
-          fields: {langId: true},
-          include: 'lang',
+          fields: {languageId: true},
+          include: 'language',
           limit: numberOfLanguages,
           order: 'points DESC',
           where: {date: date},
@@ -256,8 +256,8 @@ module.exports = class DataPopulator {
             reject(`No scores found for date: ${date}`);
           }
 
-          // Apparently score.lang is a function
-          resolve(scores.map(score => score.lang().name));
+          // Apparently score.language is a function
+          resolve(scores.map(score => score.language().name));
         }
       );
     });
@@ -280,15 +280,15 @@ module.exports = class DataPopulator {
 
   _populateScore(date, languageName) {
     return new Promise((resolve, reject) => {
-      this._app.models.lang.findOne({where: {name: languageName}}, (err, lang) => {
+      this._app.models.language.findOne({where: {name: languageName}}, (err, language) => {
         if (err) throw err;
 
-        if (lang !== null) {
+        if (language !== null) {
           this._app.models.score.findOne(
             {
               where: {
                 date: date,
-                langId: lang.id,
+                languageId: language.id,
               },
             },
             async (err, score) => {

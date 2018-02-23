@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(Lang) {
-  Lang.validatesPresenceOf('name');
-  Lang.validatesUniquenessOf('name');
+module.exports = function(Language) {
+  Language.validatesPresenceOf('name');
+  Language.validatesUniquenessOf('name');
 };

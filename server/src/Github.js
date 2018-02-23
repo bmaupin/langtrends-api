@@ -8,11 +8,11 @@ const {URL} = require('url');
 const API_URL = 'https://api.github.com/graphql';
 
 module.exports = class Github extends CodingSite {
-  static async getLangNames() {
+  static async getLanguageNames() {
     const GITHUB_LANGUAGES_URL = 'https://github.com/search/advanced';
 
     let dom = await JSDOM.fromURL(GITHUB_LANGUAGES_URL);
-    let langNames = [];
+    let languageNames = [];
 
     let select = dom.window.document.getElementById('search_language');
     let optgroups = select.getElementsByTagName('optgroup');
@@ -20,35 +20,35 @@ module.exports = class Github extends CodingSite {
     for (let i = 0; i < optgroups.length; i++) {
       let options = optgroups[i].getElementsByTagName('option');
       for (let j = 0; j < options.length; j++) {
-        langNames.push(options[j].textContent);
+        languageNames.push(options[j].textContent);
       }
     }
 
-    return langNames;
+    return languageNames;
   }
 
-  async getScore(langName, date) {
+  async getScore(languageName, date) {
     // API key can't be null for the GraphQL API (https://platform.github.community/t/anonymous-access/2093)
     if (typeof this._apiKey === 'undefined') {
       throw new Error('apiKey cannot be null');
     }
 
-    let postData = this._buildPostData(date, langName);
+    let postData = this._buildPostData(date, languageName);
     let body = await this._callApi(API_URL, postData);
 
     return body.data.search.repositoryCount;
   }
 
-  _buildPostData(date, langName) {
-    let postData = `{"query": "{ search(query: \\"language:${Github._encodeLangName(langName)} ` +
+  _buildPostData(date, languageName) {
+    let postData = `{"query": "{ search(query: \\"language:${Github._encodeLanguageName(languageName)} ` +
       `created:<${Github._encodeDate(date)}\\", type: REPOSITORY) { repositoryCount }}"}`;
 
     return postData;
   }
 
-  static _encodeLangName(langName) {
+  static _encodeLanguageName(languageName) {
     // Github API requires spaces in language names to be replaced with dashes
-    return langName.replace(/ /g, '-');
+    return languageName.replace(/ /g, '-');
   }
 
   static _encodeDate(date) {

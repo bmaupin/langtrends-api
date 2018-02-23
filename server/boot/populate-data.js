@@ -5,7 +5,7 @@ const DataPopulator = require('../src/DataPopulator');
 module.exports = function(app, cb) {
   let dataPopulator = new DataPopulator(app, cb);
 
-  dataPopulator.populateAllLangs().then(() => {
+  dataPopulator.populateAllLanguages().then(() => {
     dataPopulator.populateTopScores();
   });
 };

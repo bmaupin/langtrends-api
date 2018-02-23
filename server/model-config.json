@@ -13,7 +13,7 @@
       "./mixins"
     ]
   },
-  "lang": {
+  "language": {
     "dataSource": "db",
     "public": false
   },
