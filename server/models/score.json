@@ -24,5 +24,16 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {},
+  "indexes": {
+    "dateLangUniqueIndex": {
+      "keys": {
+        "date": 1,
+        "lang": 1
+      },
+      "options": {
+        "unique": true
+      }
+    }
+  }
 }
