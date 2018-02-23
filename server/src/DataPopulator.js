@@ -19,24 +19,6 @@ module.exports = class DataPopulator {
     }
   }
 
-  // TODO: remove this or make it return a promise
-  populateAllSites() {
-    this._app.models.site.count((err, count) => {
-      if (err) throw err;
-
-      if (count < 1) {
-        this._app.models.site.create([
-          {
-            name: 'github',
-          },
-          {
-            name: 'stackoverflow',
-          },
-        ]);
-      }
-    });
-  }
-
   async populateAllLangs() {
     let langsFromGithub = await Github.getLangNames();
 

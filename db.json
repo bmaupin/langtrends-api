@@ -1,15 +1,9 @@
 {
   "ids": {
-    "site": 3,
     "lang": 126,
-    "langAltName": 1,
     "score": 121
   },
   "models": {
-    "site": {
-      "1": "{\"name\":\"github\",\"id\":1}",
-      "2": "{\"name\":\"stackoverflow\",\"id\":2}"
-    },
     "lang": {
       "1": "{\"name\":\"ActionScript\",\"id\":1}",
       "2": "{\"name\":\"C\",\"id\":2}",
@@ -137,7 +131,6 @@
       "124": "{\"name\":\"X10\",\"id\":124}",
       "125": "{\"name\":\"Xtend\",\"id\":125}"
     },
-    "langAltName": {},
     "score": {
       "1": "{\"date\":\"2018-02-01T00:00:00.000Z\",\"points\":6353624,\"langId\":10,\"id\":1}",
       "2": "{\"date\":\"2018-02-01T00:00:00.000Z\",\"points\":5547481,\"langId\":9,\"id\":2}",
