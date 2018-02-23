@@ -9,8 +9,8 @@ const util = require('util');
 const API_URL = 'https://api.stackexchange.com/2.2/search?todate=%s&site=stackoverflow&tagged=%s&filter=!.UE8F0bVg4M-_Ii4';
 
 class Stackoverflow extends CodingSite {
-  async getScore(langName, date) {
-    let url = this._buildUrl(date, langName);
+  async getScore(languageName, date) {
+    let url = this._buildUrl(date, languageName);
     let body = await this._callApi(url);
 
     if (body.quota_remaining < 1000) {
@@ -29,8 +29,8 @@ class Stackoverflow extends CodingSite {
     return body.total;
   }
 
-  _buildUrl(date, langName) {
-    let url = util.format(API_URL, Stackoverflow._encodeDate(date), Stackoverflow._encodeLangName(langName));
+  _buildUrl(date, languageName) {
+    let url = util.format(API_URL, Stackoverflow._encodeDate(date), Stackoverflow._encodeLanguageName(languageName));
     url = this._addApiKey(url);
 
     return url;
@@ -42,8 +42,8 @@ class Stackoverflow extends CodingSite {
     return Math.floor(date / 1000);
   }
 
-  static _encodeLangName(langName) {
-    return encodeURIComponent(langName.toLowerCase().replace(/ /g, '-'));
+  static _encodeLanguageName(languageName) {
+    return encodeURIComponent(languageName.toLowerCase().replace(/ /g, '-'));
   }
 
   async _callApi(url) {

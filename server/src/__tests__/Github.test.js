@@ -2,10 +2,10 @@
 
 const Github = require('../Github');
 
-test('Test getLangNames', async () => {
-  let langNames = await Github.getLangNames();
-  expect(langNames.length).toBeGreaterThan(100);
-  expect(langNames).toContain('JavaScript');
+test('Test getLanguageNames', async () => {
+  let languageNames = await Github.getLanguageNames();
+  expect(languageNames.length).toBeGreaterThan(100);
+  expect(languageNames).toContain('JavaScript');
 });
 
 test('Test getScore', async () => {
