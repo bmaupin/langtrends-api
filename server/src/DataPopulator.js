@@ -56,35 +56,50 @@ module.exports = class DataPopulator {
   }
 
   async populateTopScores() {
-    const FIRST_DATE = new Date(Date.UTC(2007, 9)); // 2007-10-01 00:00:00 UTC
+    const OLDEST_DATE = new Date(Date.UTC(2007, 9)); // 2007-10-01 00:00:00 UTC
     const NUM_LANGUAGES = 10;
-    let date = DataPopulator._getFirstDayOfMonth();
+    let currentDate = DataPopulator._getFirstDayOfMonthUTC();
+    const ONE_YEAR_AGO = DataPopulator._subtractOneYearUTC(currentDate);
 
-    let topLanguages = await this._getTopLanguages(NUM_LANGUAGES, date);
+    let topLanguages = await this._getTopLanguages(NUM_LANGUAGES, currentDate);
 
     // TODO
     console.log(topLanguages);
 
-    // TODO make this code clearer
-    for (let i = 0; date >= FIRST_DATE; i++) {
-      date.setUTCMonth(date.getUTCMonth() - 1);
-      // TODO
-      console.log(`${i}: ${date}`);
+    while (true) {
+      currentDate = DataPopulator._subtractOneMonthUTC(currentDate);
 
-      await this._populateScores(date, topLanguages);
+      // TODO
+      console.log(currentDate);
+
+      if (currentDate <= OLDEST_DATE) {
+        break;
 
       // Tell the app we're ready after the most recent year's scores are populated
-      if (i === 10) {
-        // TODO
-        return;
+      } else if (currentDate <= ONE_YEAR_AGO) {
         process.nextTick(this._cb);
+        // TODO
+        break;
       }
+
+      await this._populateScores(currentDate, topLanguages);
     }
   }
 
-  static _getFirstDayOfMonth() {
-    // Note this will return a date at 00:00:00 UTC time
+  static _getFirstDayOfMonthUTC() {
     return new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth()));
+  }
+
+  static _subtractOneMonthUTC(date) {
+    let newDate = new Date(date);
+    newDate.setUTCMonth(newDate.getUTCMonth() - 1);
+    return newDate;
+  }
+
+  static _subtractOneYearUTC(date) {
+    let newDate = new Date(date);
+    newDate.setUTCFullYear(newDate.getUTCFullYear() - 1);
+    return newDate;
   }
 
   async _getTopLanguages(numberOfLanguages, date) {
