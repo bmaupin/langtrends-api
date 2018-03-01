@@ -2,6 +2,17 @@
   "name": "score",
   "base": "PersistedModel",
   "idInjection": true,
+  "indexes": {
+    "dateLanguageUniqueIndex": {
+      "keys": {
+        "date": 1,
+        "language": 1
+      },
+      "options": {
+        "unique": true
+      }
+    }
+  },
   "options": {
     "validateUpsert": true
   },
@@ -23,17 +34,13 @@
       "foreignKey": ""
     }
   },
-  "acls": [],
-  "methods": {},
-  "indexes": {
-    "dateLanguageUniqueIndex": {
-      "keys": {
-        "date": 1,
-        "language": 1
-      },
-      "options": {
-        "unique": true
-      }
+  "acls": [
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
     }
-  }
+  ],
+  "methods": {}
 }
