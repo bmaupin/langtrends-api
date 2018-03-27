@@ -3,10 +3,10 @@
   "base": "PersistedModel",
   "idInjection": true,
   "indexes": {
-    "dateLanguageUniqueIndex": {
+    "dateLanguageIdUniqueIndex": {
       "keys": {
         "date": 1,
-        "language": 1
+        "languageId": 1
       },
       "options": {
         "unique": true
