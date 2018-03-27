@@ -192,7 +192,8 @@ module.exports = class DataPopulator {
         if (err) throw err;
 
         if (language !== null) {
-          if (typeof language.stackoverflowTag === 'undefined') {
+          // This will be undefined for the memory connectory, null for PostgresQL. Go figure
+          if (typeof language.stackoverflowTag === 'undefined' || language.stackoverflowTag === null) {
             resolve(languageName);
           } else {
             resolve(language.stackoverflowTag);
