@@ -35,11 +35,11 @@
     "dataSource": "db",
     "public": false
   },
-  "language": {
+  "Language": {
     "dataSource": "db",
     "public": true
   },
-  "score": {
+  "Score": {
     "dataSource": "db",
     "public": true
   }

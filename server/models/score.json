@@ -1,5 +1,5 @@
 {
-  "name": "score",
+  "name": "Score",
   "base": "PersistedModel",
   "idInjection": true,
   "indexes": {
@@ -30,7 +30,7 @@
   "relations": {
     "language": {
       "type": "belongsTo",
-      "model": "language",
+      "model": "Language",
       "foreignKey": ""
     }
   },
