@@ -1,5 +1,5 @@
 {
-  "name": "language",
+  "name": "Language",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
