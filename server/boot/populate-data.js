@@ -1,6 +1,6 @@
 'use strict';
 
-const DataPopulator = require('../src/DataPopulator');
+const DataPopulator = require('./classes/DataPopulator');
 
 module.exports = function(app, cb) {
   populateData(app, cb);
