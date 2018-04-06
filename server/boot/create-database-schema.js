@@ -1,15 +1,15 @@
 'use strict';
 
-// Create database schema if it doesn't exist (https://loopback.io/doc/en/lb3/Creating-a-database-schema-from-models.html)
-// This is effectively a no-op for the memory connector (https://loopback.io/doc/en/lb3/Memory-connector.html)
+// Update (or create) database schema (https://loopback.io/doc/en/lb3/Creating-a-database-schema-from-models.html)
+// This is effectively a no-op for the memory connector
 // Based on https://stackoverflow.com/a/40032444/399105
 module.exports = function(app, cb) {
-  createDatabaseSchema(app).then(() => {
+  updateDatabaseSchema(app).then(() => {
     process.nextTick(cb);
   });
 };
 
-function createDatabaseSchema(app) {
+function updateDatabaseSchema(app) {
   return new Promise((resolve, reject) => {
     let datastore = app.datasources.db;
 
@@ -17,7 +17,7 @@ function createDatabaseSchema(app) {
       datastore.isActual(model, async (err, actual) => {
         if (err) reject(err);
         if (!actual) {
-          await autoupdate(datastore, model);
+          await updateSchemaForModel(datastore, model);
         }
       });
     }
@@ -26,7 +26,7 @@ function createDatabaseSchema(app) {
   });
 }
 
-function autoupdate(datastore, model) {
+function updateSchemaForModel(datastore, model) {
   return new Promise((resolve, reject) => {
     datastore.autoupdate(model, (err, result) => {
       if (err) reject(err);
