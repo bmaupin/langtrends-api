@@ -12,12 +12,16 @@ function schedulePopulateDataDaily(app) {
   setInterval(populateData, MILLISECONDS_PER_DAY, app);
 }
 
-function populateData(app) {
+async function populateData(app) {
   console.log(`DEBUG: ${new Date(Date.now()).toISOString()}\tpopulateData`);
 
   let dataPopulator = new DataPopulator(app);
 
-  dataPopulator.populateAllLanguages().then(() => {
-    dataPopulator.populateTopScores();
-  });
+  try {
+    await dataPopulator.populateAllLanguages();
+    await dataPopulator.populateTopScores();
+  } catch (error) {
+    // Don't abort on errors
+    console.error(error);
+  }
 }
