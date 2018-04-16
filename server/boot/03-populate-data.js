@@ -2,8 +2,8 @@
 
 const DataPopulator = require('./classes/DataPopulator');
 
-module.exports = function(app, cb) {
-  populateData(app, cb);
+module.exports = function(app) {
+  populateData(app);
   schedulePopulateDataDaily(app);
 };
 
@@ -12,10 +12,10 @@ function schedulePopulateDataDaily(app) {
   setInterval(populateData, MILLISECONDS_PER_DAY, app);
 }
 
-function populateData(app, cb) {
+function populateData(app) {
   console.log(`DEBUG: ${new Date(Date.now()).toISOString()}\tpopulateData`);
 
-  let dataPopulator = new DataPopulator(app, cb);
+  let dataPopulator = new DataPopulator(app);
 
   dataPopulator.populateAllLanguages().then(() => {
     dataPopulator.populateTopScores();
