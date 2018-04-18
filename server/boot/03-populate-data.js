@@ -19,7 +19,7 @@ async function populateData(app) {
 
   try {
     await dataPopulator.populateAllLanguages();
-    await dataPopulator.populateTopScores();
+    await dataPopulator.populateAllScores();
   } catch (error) {
     // Don't abort on errors
     console.error(error);
