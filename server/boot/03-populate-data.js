@@ -18,8 +18,9 @@ async function populateData(app) {
   let dataPopulator = new DataPopulator(app);
 
   try {
-    await dataPopulator.populateAllLanguages();
-    await dataPopulator.populateAllScores();
+    await dataPopulator.populateUsers();
+    await dataPopulator.populateLanguages();
+    await dataPopulator.populateScores();
   } catch (error) {
     // Don't abort on errors
     console.error(error);
