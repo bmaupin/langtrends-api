@@ -14,7 +14,11 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "db",
+    "options": {
+      "validateUpsert": true,
+      "allowEternalTokens": true
+    }
   },
   "AccessToken": {
     "dataSource": "db",
