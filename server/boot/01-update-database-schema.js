@@ -9,20 +9,22 @@ module.exports = function(app, cb) {
   });
 };
 
-function updateDatabaseSchema(app) {
-  return new Promise((resolve, reject) => {
-    let datastore = app.datasources.db;
+async function updateDatabaseSchema(app) {
+  let datastore = app.datasources.db;
 
-    for (let model in app.models) {
-      datastore.isActual(model, async (err, actual) => {
-        if (err) reject(err);
-        if (!actual) {
-          await updateSchemaForModel(datastore, model);
-        }
-      });
+  for (let model in app.models) {
+    if (await doesModelNeedUpdate(datastore, model) === true) {
+      await updateSchemaForModel(datastore, model);
     }
+  }
+}
 
-    resolve();
+function doesModelNeedUpdate(datastore, model) {
+  return new Promise((resolve, reject) => {
+    datastore.isActual(model, (err, actual) => {
+      if (err) reject(err);
+      resolve(!actual);
+    });
   });
 }
 
