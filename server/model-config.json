@@ -18,7 +18,8 @@
     "options": {
       "validateUpsert": true,
       "allowEternalTokens": true
-    }
+    },
+    "public": false
   },
   "AccessToken": {
     "dataSource": "db",
