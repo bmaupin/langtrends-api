@@ -38,5 +38,8 @@
     "url": ""
   },
   "license": "MIT",
-  "description": "langpop"
+  "description": "langpop",
+  "jest": {
+    "testURL": "http://localhost/"
+  }
 }
