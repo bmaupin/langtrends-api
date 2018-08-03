@@ -12,6 +12,8 @@
     "test": "jest --coverage"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-node8": "^1.2.0",
     "compression": "^1.7.3",
     "cors": "^2.5.2",
     "helmet": "^3.13.0",
@@ -24,8 +26,6 @@
     "strong-error-handler": "^3.1.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-node8": "^1.2.0",
     "coveralls": "^3.0.2",
     "eslint": "^4.19.1",
     "eslint-config-loopback": "^10.0.0",
