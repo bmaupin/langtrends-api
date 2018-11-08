@@ -12,9 +12,9 @@ module.exports = function(app, cb) {
 async function updateDatabaseSchema(app) {
   let datastore = app.datasources.db;
 
-  for (let model in app.models) {
-    if (await doesModelNeedUpdate(datastore, model) === true) {
-      await updateSchemaForModel(datastore, model);
+  for (let model of app.models()) {
+    if (await doesModelNeedUpdate(datastore, model.modelName) === true) {
+      await updateSchemaForModel(datastore, model.modelName);
     }
   }
 }
