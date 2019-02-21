@@ -36,7 +36,8 @@ objects:
       app: api
     name: api
   spec:
-    replicas: 2
+    # Start with 1 pod until the initial data load is complete
+    replicas: 1
     selector:
       deploymentconfig: api
     strategy:
