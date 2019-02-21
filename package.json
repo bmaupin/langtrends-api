@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint . --ext .js --ext .json",
     "start": "babel-node . --presets node8",
-    "posttest": "npm run lint && nsp check",
+    "posttest": "npm run lint && npm audit",
     "test": "jest --coverage"
   },
   "dependencies": {
@@ -30,8 +30,7 @@
     "eslint": "^4.19.1",
     "eslint-config-loopback": "^10.0.0",
     "eslint-plugin-json": "^1.2.1",
-    "jest": "^23.4.2",
-    "nsp": "^3.2.1"
+    "jest": "^23.4.2"
   },
   "repository": {
     "type": "",
