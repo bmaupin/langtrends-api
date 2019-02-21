@@ -25,7 +25,7 @@ services:
     depends_on:
       - postgres
   postgres:
-    image: centos/postgresql-96-centos7
+    image: centos/postgresql-10-centos7
     environment:
       - POSTGRESQL_DATABASE
       - POSTGRESQL_PASSWORD
