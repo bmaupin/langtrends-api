@@ -7,13 +7,11 @@
   },
   "scripts": {
     "lint": "eslint . --ext .js --ext .json",
-    "start": "babel-node . --presets node8",
+    "start": "node .",
     "posttest": "npm run lint && npm audit",
     "test": "jest --coverage"
   },
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-node8": "^1.2.0",
     "compression": "^1.7.3",
     "cors": "^2.5.2",
     "helmet": "^3.13.0",
