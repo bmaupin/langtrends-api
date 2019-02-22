@@ -54,20 +54,20 @@ objects:
         - env:
           - name: GITHUB_API_KEY
             value: ${GITHUB_API_KEY}
-          - name: PORT
-            value: "8080"
-          - name: STACKOVERFLOW_API_KEY
-            value: ${STACKOVERFLOW_API_KEY}
-          - name: POSTGRESQL_USER
-            value: ${POSTGRESQL_USER}
-          - name: POSTGRESQL_PASSWORD
-            value: ${POSTGRESQL_PASSWORD}
-          - name: POSTGRESQL_DATABASE
-            value: ${POSTGRESQL_DATABASE}
-          - name: NODE_ENV
-            value: production
           - name: LOOPBACK_API_PASSWORD
             value: ${LOOPBACK_API_PASSWORD}
+          - name: NODE_ENV
+            value: production
+          - name: PORT
+            value: "8080"
+          - name: POSTGRESQL_DATABASE
+            value: ${POSTGRESQL_DATABASE}
+          - name: POSTGRESQL_PASSWORD
+            value: ${POSTGRESQL_PASSWORD}
+          - name: POSTGRESQL_USER
+            value: ${POSTGRESQL_USER}
+          - name: STACKOVERFLOW_API_KEY
+            value: ${STACKOVERFLOW_API_KEY}
           image: docker-registry.default.svc:5000/${NAMESPACE}/api
           imagePullPolicy: Always
           name: api
@@ -116,12 +116,12 @@ objects:
       spec:
         containers:
         - env:
-          - name: POSTGRESQL_USER
-            value: ${POSTGRESQL_USER}
-          - name: POSTGRESQL_PASSWORD
-            value: ${POSTGRESQL_PASSWORD}
           - name: POSTGRESQL_DATABASE
             value: ${POSTGRESQL_DATABASE}
+          - name: POSTGRESQL_PASSWORD
+            value: ${POSTGRESQL_PASSWORD}
+          - name: POSTGRESQL_USER
+            value: ${POSTGRESQL_USER}
           image: docker-registry.default.svc:5000/openshift/postgresql@sha256:62a42216cb66e00cfcc66a28a6fb9a9953f2aed8592c4fd5140ddfa5b2193193
           imagePullPolicy: IfNotPresent
           livenessProbe:
