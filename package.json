@@ -1,5 +1,5 @@
 {
-  "name": "langpop",
+  "name": "loopback-api",
   "version": "0.0.1",
   "main": "server/server.js",
   "engines": {
@@ -36,7 +36,7 @@
     "url": ""
   },
   "license": "MIT",
-  "description": "langpop",
+  "description": "loopback-api",
   "jest": {
     "testURL": "http://localhost/"
   }

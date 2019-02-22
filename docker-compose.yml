@@ -8,8 +8,8 @@ services:
     working_dir: /home/node/app
     environment:
       - GITHUB_API_KEY
+      - LOOPBACK_API_PASSWORD
       - NODE_ENV=development
-      - POPCON_API_PASSWORD
       - PORT=3000
       - POSTGRESQL_DATABASE
       - POSTGRESQL_PASSWORD
