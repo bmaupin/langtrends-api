@@ -66,8 +66,8 @@ objects:
             value: ${POSTGRESQL_DATABASE}
           - name: NODE_ENV
             value: production
-          - name: POPCON_API_PASSWORD
-            value: ${POPCON_API_PASSWORD}
+          - name: LOOPBACK_API_PASSWORD
+            value: ${LOOPBACK_API_PASSWORD}
           image: docker-registry.default.svc:5000/${NAMESPACE}/api
           imagePullPolicy: Always
           name: api
@@ -234,11 +234,11 @@ kind: Template
 parameters:
 - name: GITHUB_API_KEY
   required: true
+- name: LOOPBACK_API_PASSWORD
+  required: true
 - name: NAMESPACE
   displayName: Project
   description: The OpenShift project where this application will be deployed
-  required: true
-- name: POPCON_API_PASSWORD
   required: true
 - name: POSTGRESQL_USER
   description: Username for PostgreSQL user that will be used for accessing the database.
