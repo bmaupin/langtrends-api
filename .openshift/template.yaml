@@ -68,7 +68,6 @@ objects:
             value: ${POSTGRESQL_USER}
           - name: STACKOVERFLOW_API_KEY
             value: ${STACKOVERFLOW_API_KEY}
-          image: docker-registry.default.svc:5000/${NAMESPACE}/api
           imagePullPolicy: Always
           name: api
           ports:
@@ -235,10 +234,6 @@ parameters:
 - name: GITHUB_API_KEY
   required: true
 - name: LOOPBACK_API_PASSWORD
-  required: true
-- name: NAMESPACE
-  displayName: Project
-  description: The OpenShift project where this application will be deployed
   required: true
 - name: POSTGRESQL_USER
   description: Username for PostgreSQL user that will be used for accessing the database.
