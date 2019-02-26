@@ -1,0 +1,7 @@
+.env
+.openshift/
+coverage/
+db.json
+docker-compose.yml
+node_modules
+npm-debug.log
