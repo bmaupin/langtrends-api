@@ -1,10 +1,7 @@
-FROM node:8
+FROM node:10
 
 # Create app directory
 WORKDIR /usr/src/app
-
-# Upgrade npm so we can use npm ci
-RUN npm install -g npm
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
