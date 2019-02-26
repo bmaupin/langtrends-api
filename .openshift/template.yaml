@@ -105,8 +105,6 @@ objects:
     selector:
       name: postgresql
     strategy:
-      recreateParams:
-        timeoutSeconds: 600
       type: Recreate
     template:
       metadata:
@@ -121,7 +119,6 @@ objects:
             value: ${POSTGRESQL_PASSWORD}
           - name: POSTGRESQL_USER
             value: ${POSTGRESQL_USER}
-          image: docker-registry.default.svc:5000/openshift/postgresql@sha256:62a42216cb66e00cfcc66a28a6fb9a9953f2aed8592c4fd5140ddfa5b2193193
           imagePullPolicy: IfNotPresent
           livenessProbe:
             exec:
