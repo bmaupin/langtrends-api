@@ -5,7 +5,7 @@ services:
     # This is the latest LTS release of Node.js
     image: "node:10"
     user: node
-    working_dir: /home/node/app
+    working_dir: /usr/src/app
     environment:
       - GITHUB_API_KEY
       - LOOPBACK_API_PASSWORD
@@ -18,7 +18,7 @@ services:
       - POSTGRESQL_USER
       - STACKOVERFLOW_API_KEY
     volumes:
-      - ./:/home/node/app
+      - ./:/usr/src/app
     ports:
       - "127.0.0.1:${PORT:-3000}:3000"
     command: sh -c "sleep 5 && node_modules/.bin/nodemon ."
