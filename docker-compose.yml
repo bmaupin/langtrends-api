@@ -7,34 +7,14 @@ services:
     user: node
     working_dir: /usr/src/app
     environment:
+      - DATABASE_URL
       - GITHUB_API_KEY
       - LOOPBACK_API_PASSWORD
       - NODE_ENV=development
       - PORT=3000
-      - POSTGRESQL_DATABASE
-      - POSTGRESQL_PASSWORD
-      - POSTGRESQL_SERVICE_HOST=postgres
-      - POSTGRESQL_SERVICE_PORT=5432
-      - POSTGRESQL_USER
       - STACKOVERFLOW_API_KEY
     volumes:
       - ./:/usr/src/app
     ports:
       - "127.0.0.1:${PORT:-3000}:3000"
-    command: sh -c "sleep 5 && node_modules/.bin/nodemon ."
-    depends_on:
-      - postgres
-  postgres:
-    image: centos/postgresql-10-centos7
-    environment:
-      - POSTGRESQL_DATABASE
-      - POSTGRESQL_PASSWORD
-      - POSTGRESQL_SERVICE_PORT=5432
-      - POSTGRESQL_USER
-    volumes:
-      - postgres-data:/var/lib/pgsql/data
-    ports:
-      - "127.0.0.1:${POSTGRESQL_SERVICE_PORT:-5432}:5432"
-
-volumes:
-  postgres-data:
+    command: node_modules/.bin/nodemon .
