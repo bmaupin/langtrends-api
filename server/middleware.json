@@ -6,7 +6,7 @@
     "compression": {},
     "cors": {
       "params": {
-        "origin": false,
+        "origin": "https://bmaupin.github.io",
         "credentials": true,
         "maxAge": 86400
       }
