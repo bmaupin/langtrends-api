@@ -1,6 +1,6 @@
 {
   "env": {
-    "jest": true,
+    "jest": true
   },
   "extends": "loopback",
   "parserOptions": {
