@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint . --ext .js --ext .json",
     "start": "node .",
-    "posttest": "npm run lint && npm audit",
+    "posttest": "npm run lint && npm audit --audit-level=high",
     "test": "jest --coverage"
   },
   "dependencies": {
