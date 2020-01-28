@@ -6,7 +6,7 @@
     "node": ">=8"
   },
   "scripts": {
-    "dev": "nodemon -r dotenv/config",
+    "dev": "nodemon -r dotenv/config -w . -w .env",
     "lint": "eslint . --ext .js --ext .json",
     "start": "node .",
     "posttest": "npm run lint && npm audit --audit-level=high",
