@@ -1,20 +1,39 @@
-version: "3"
+version: '3'
 
 services:
-  api:
-    # This is the latest LTS release of Node.js
-    image: "node:10"
-    user: node
-    working_dir: /usr/src/app
+  # api:
+  #   # Use the latest LTS release of Node.js
+  #   image: node:lts-alpine
+  #   user: node
+  #   working_dir: /usr/src/app
+  #   environment:
+  #     - DATABASE_URL
+  #     - GITHUB_API_KEY
+  #     - LOOPBACK_API_PASSWORD
+  #     - NODE_ENV=development
+  #     - PORT=3000
+  #     - POSTGRES_DB
+  #     - POSTGRES_PASSWORD
+  #     - POSTGRES_USER
+  #     - STACKOVERFLOW_API_KEY
+  #   volumes:
+  #     - ./:/usr/src/app
+  #   ports:
+  #     - '127.0.0.1:${PORT:-3000}:3000'
+  #   command: sh -c "sleep 5 && node_modules/.bin/nodemon -r dotenv/config -w . -w .env"
+  #   depends_on:
+  #     - postgres
+  postgres:
+    # Use the latest alpine-based image
+    image: postgres:alpine
     environment:
-      - DATABASE_URL
-      - GITHUB_API_KEY
-      - LOOPBACK_API_PASSWORD
-      - NODE_ENV=development
-      - PORT=3000
-      - STACKOVERFLOW_API_KEY
+      - POSTGRES_DB=langtrends
+      - POSTGRES_PASSWORD=supersecretpasswordfortesting
+      - POSTGRES_USER=langtrends
     volumes:
-      - ./:/usr/src/app
+      - postgres-data:/var/lib/pgsql/data
     ports:
-      - "127.0.0.1:${PORT:-3000}:3000"
-    command: node_modules/.bin/nodemon .
+      - '5432:5432'
+
+volumes:
+  postgres-data:
