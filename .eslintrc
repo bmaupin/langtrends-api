@@ -18,6 +18,7 @@
         "ignoreUrls": true
       }
     ],
+    "object-curly-spacing": ["warn", "always"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "space-before-function-paren": [
