@@ -20,7 +20,7 @@
     "loopback": "^3.0.0",
     "loopback-boot": "^3.3.1",
     "loopback-component-explorer": "^6.4.0",
-    "loopback-connector-postgresql": "^3.8.1",
+    "loopback-connector-postgresql": "^5.4.0",
     "serve-favicon": "^2.5.0",
     "strong-error-handler": "^3.1.0"
   },
