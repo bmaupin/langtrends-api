@@ -4,7 +4,9 @@
 
 ---
 
-API for https://github.com/bmaupin/langtrends
+Legacy API for https://github.com/bmaupin/langtrends
+
+> ⚠ This has been replaced by https://github.com/bmaupin/langtrends-data
 
 Built with:
 
